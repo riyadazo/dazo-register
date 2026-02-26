@@ -75,11 +75,14 @@ textarea.finput { resize:vertical; min-height:70px; }
 .product-btn .pqty { position:absolute; top:4px; left:4px; background:var(--accent); color:#fff; font-size:9px; font-weight:900; padding:1px 5px; border-radius:99px; font-family:'DM Mono',monospace; line-height:1.4; }
 
 /* カート */
-.cart-wrap { background:var(--s1); border:1px solid var(--border); border-radius:var(--r); margin-bottom:0; overflow:hidden; border-bottom:none; border-radius:var(--r) var(--r) 0 0; }
-.cart-head { padding:7px 12px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
-.cart-head span { font-size:11px; font-weight:700; color:var(--text2); letter-spacing:.5px; }
+.cart-wrap { background:var(--s1); border:1px solid var(--border); border-radius:var(--r) var(--r) 0 0; margin-bottom:0; overflow:hidden; border-bottom:none; }
+.cart-head { padding:7px 12px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:6px; cursor:pointer; user-select:none; }
+.cart-head-label { font-size:11px; font-weight:700; color:var(--text2); letter-spacing:.5px; flex:1; display:flex; align-items:center; gap:5px; }
+.cart-chevron { font-size:10px; color:var(--text3); transition:transform .2s; line-height:1; }
+.cart-chevron.open { transform:rotate(180deg); }
 .cart-clear { background:none; border:none; color:var(--red); font-size:11px; font-weight:700; cursor:pointer; padding:2px 6px; }
-.cart-list { max-height:160px; overflow-y:auto; }
+.cart-list { max-height:160px; overflow-y:auto; transition:max-height .22s ease, opacity .18s ease; overflow:hidden; }
+.cart-list.collapsed { max-height:0 !important; opacity:0; }
 .cart-empty { padding:18px; text-align:center; color:var(--text3); font-size:12px; }
 .cart-item { padding:5px 12px; display:flex; align-items:center; gap:8px; border-bottom:none; animation:fadeSlide .15s ease; }
 @keyframes fadeSlide { from{opacity:0;transform:translateX(-6px)} to{opacity:1} }
@@ -89,7 +92,7 @@ textarea.finput { resize:vertical; min-height:70px; }
 
 
 /* 合計 */
-.total-wrap { background:var(--s1); border:1px solid var(--border); border-radius:0 0 var(--r) var(--r); padding:8px 12px 10px; margin-bottom:8px; border-top:1px solid var(--border); }
+.total-wrap { background:var(--s1); border:1px solid var(--border); border-radius:0 0 var(--r) var(--r); padding:8px 12px 10px; margin-bottom:8px; border-top:1px solid var(--border); flex-shrink:0; }
 .trow { display:flex; justify-content:space-between; padding:2px 0; font-size:12px; }
 .trow .tval { font-family:'DM Mono',monospace; }
 .trow.grand { border-top:1px solid var(--border); margin-top:5px; padding-top:6px; }
@@ -227,14 +230,21 @@ textarea.finput { resize:vertical; min-height:70px; }
   </div>
   <div class="product-grid" id="product-grid"></div>
   <div class="cart-wrap">
-    <div class="cart-head">
-      <span>カート</span>
-      <button class="cart-clear" onclick="clearCart()">クリア</button>
+    <div class="cart-head" onclick="toggleCartAccordion()">
+      <span class="cart-head-label">
+        <span class="cart-chevron" id="cart-chevron">▲</span>
+        カート
+        <span id="cart-head-summary" style="font-size:10px;color:var(--text3);font-weight:600"></span>
+      </span>
+      <button class="cart-clear" onclick="event.stopPropagation();clearCart()">クリア</button>
     </div>
     <div class="cart-list" id="cart-list"><div class="cart-empty">商品を追加してください</div></div>
   </div>
   <div class="total-wrap">
-    <div class="trow grand" style="border-top:none;margin-top:0;padding-top:4px"><span class="tlbl">合計</span><span class="tval" id="total">¥0</span></div>
+    <div class="trow grand" style="border-top:none;margin-top:0;padding-top:4px">
+      <span class="tlbl" id="cart-total-label">合計</span>
+      <span class="tval" id="total">¥0</span>
+    </div>
   </div>
   <!-- テンキー -->
   <div class="cashkey-wrap">
@@ -294,7 +304,7 @@ textarea.finput { resize:vertical; min-height:70px; }
     <div class="section-label">領収書 表示情報</div>
     <div class="fgroup"><label>サークル名 / 店舗名</label><input type="text" class="finput" id="store-name" placeholder="例: ○○サークル" oninput="saveSetting('storeName',this.value)"></div>
     <div class="fgroup"><label>メールアドレス（問い合わせ先）</label><input type="text" class="finput" id="store-email" placeholder="例: info@example.com" oninput="saveSetting('storeEmail',this.value)"></div>
-    <div class="fgroup"><label>一言メッセージ（任意）</label><input type="text" class="finput" id="store-message" placeholder="例: ありがとうございました！" oninput="saveSetting('storeMessage',this.value)"></div>
+    <div class="fgroup"><label>一言メッセージ（任意）</label><input type="text" class="finput" id="store-message" placeholder="例: ありがとうございました！" maxlength="140" oninput="saveSetting('storeMessage',this.value)"><div style="font-size:10px;color:var(--text3);text-align:right;margin-top:3px">最大140字</div></div>
     <div class="fgroup">
       <label>店舗ロゴ（領収書に印刷・白黒変換されます）</label>
       <div class="logo-preview-wrap">
@@ -455,9 +465,183 @@ textarea.finput { resize:vertical; min-height:70px; }
   </div>
 </div>
 
+<!-- ダウンロード完了モーダル -->
+<div class="modal-overlay" id="dl-complete-modal">
+  <div class="modal">
+    <div style="text-align:center;margin-bottom:16px">
+      <div style="font-size:32px;margin-bottom:6px">📥</div>
+      <div class="modal-title" id="dl-complete-title" style="margin-bottom:4px">ダウンロード完了</div>
+      <div style="font-size:12px;color:var(--text3)" id="dl-complete-filename"></div>
+    </div>
+    <div id="dl-complete-guide" style="background:var(--s2);border:1px solid var(--border);border-radius:var(--rs);padding:14px;margin-bottom:16px;font-size:13px;line-height:1.8;color:var(--text2)"></div>
+    <button class="btn btn-ghost" onclick="closeDlCompleteModal()">閉じる</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
+// ===========================
+// ダウンロード完了ガイド
+// ===========================
+function detectOS(){
+  const ua=navigator.userAgent;
+  if(/iPad|iPhone|iPod/.test(ua))return'ios';
+  if(/Android/.test(ua))return'android';
+  if(/Macintosh/.test(ua))return'mac';
+  if(/Windows/.test(ua))return'windows';
+  return'other';
+}
+
+function showDlCompleteModal(type, filename){
+  const os=detectOS();
+  document.getElementById('dl-complete-filename').textContent=filename;
+
+  const guides={
+    csv:{
+      ios:{
+        title:'CSV出力完了',
+        steps:[
+          '① Safari のダウンロードマネージャー（アドレスバー右の ↓ アイコン）をタップ',
+          '② ファイル名をタップ → 「共有」→「ファイルに保存」',
+          '③ iCloud Drive または「このiPhone内」→ 任意のフォルダに保存',
+          '④ ファイルアプリ → 保存先フォルダで確認できます',
+        ],
+        note:'💡 Excel / Numbers で開く場合は、ファイルを長押し →「別のアプリで開く」→ アプリを選択'
+      },
+      android:{
+        title:'CSV出力完了',
+        steps:[
+          '① 画面上部の通知バーを下にスワイプ',
+          '② ダウンロード完了の通知をタップ → ファイルが開きます',
+          '③ または「ファイル」アプリ → ダウンロード フォルダで確認',
+        ],
+        note:'💡 Google スプレッドシートで開く場合は、ファイルを長押し →「別のアプリで開く」'
+      },
+      mac:{
+        title:'CSV出力完了',
+        steps:[
+          '① Finder → ダウンロード フォルダ（⌘+Option+L）',
+          '② または Dock の「ダウンロード」スタックをクリック',
+          '③ Excel / Numbers / Google スプレッドシートにドラッグで開けます',
+        ],
+        note:''
+      },
+      windows:{
+        title:'CSV出力完了',
+        steps:[
+          '① エクスプローラー → ダウンロード フォルダ（Win+E → ダウンロード）',
+          '② または ブラウザのダウンロード履歴（Ctrl+J）からファイルをクリック',
+          '③ Excel / Google スプレッドシートで開けます',
+        ],
+        note:''
+      },
+      other:{
+        title:'CSV出力完了',
+        steps:['ブラウザのダウンロードフォルダを確認してください'],
+        note:''
+      }
+    },
+    json:{
+      ios:{
+        title:'バックアップ完了',
+        steps:[
+          '① Safari のダウンロードマネージャー（↓ アイコン）をタップ',
+          '② ファイル名をタップ → 「共有」→「ファイルに保存」',
+          '③ iCloud Drive に保存すると、他のデバイスからもアクセス可能です',
+          '④ ファイルアプリ → iCloud Drive で確認できます',
+        ],
+        note:'💡 復元時：設定ページの「バックアップから復元」（未実装）またはデータを手動インポート'
+      },
+      android:{
+        title:'バックアップ完了',
+        steps:[
+          '① 通知バーを下にスワイプ → ダウンロード通知をタップ',
+          '② または「ファイル」アプリ → ダウンロード フォルダ',
+          '③ Google ドライブに移動しておくと安全にバックアップできます',
+        ],
+        note:'💡 Google ドライブへ：ファイルを長押し → 「共有」→ Drive を選択'
+      },
+      mac:{
+        title:'バックアップ完了',
+        steps:[
+          '① Finder → ダウンロード フォルダ（⌘+Option+L）',
+          '② 大切なバックアップは iCloud Drive や外付けドライブに移動を推奨',
+        ],
+        note:''
+      },
+      windows:{
+        title:'バックアップ完了',
+        steps:[
+          '① エクスプローラー → ダウンロード フォルダ（Win+E → ダウンロード）',
+          '② 大切なバックアップは OneDrive や外付けドライブに移動を推奨',
+        ],
+        note:''
+      },
+      other:{
+        title:'バックアップ完了',
+        steps:['ダウンロードフォルダを確認してください'],
+        note:''
+      }
+    },
+    receipt:{
+      ios:{
+        title:'領収書のダウンロード完了',
+        steps:[
+          '① Safari のダウンロードマネージャー（↓ アイコン）をタップ',
+          '② ファイルをタップ → 「共有」→「写真に追加」または「ファイルに保存」',
+          '③ 印刷：写真アプリまたはファイルアプリから「プリント」を選択',
+        ],
+        note:'💡 サーマルプリンタへの転送は、プリンタのアプリ経由が確実です'
+      },
+      android:{
+        title:'領収書のダウンロード完了',
+        steps:[
+          '① 通知バーを下にスワイプ → ダウンロード通知をタップ',
+          '② または「ファイル」アプリ → ダウンロード フォルダ',
+          '③ 印刷：画像を開いて「共有」→「印刷」またはプリンタアプリへ送信',
+        ],
+        note:'💡 サーマルプリンタアプリに直接共有する方法が最も手軽です'
+      },
+      mac:{
+        title:'領収書のダウンロード完了',
+        steps:[
+          '① Finder → ダウンロード フォルダ',
+          '② ダブルクリックでプレビュー表示 → ⌘+P で印刷',
+        ],
+        note:''
+      },
+      windows:{
+        title:'領収書のダウンロード完了',
+        steps:[
+          '① エクスプローラー → ダウンロード フォルダ',
+          '② 画像を開いて右クリック →「印刷」',
+        ],
+        note:''
+      },
+      other:{
+        title:'領収書のダウンロード完了',
+        steps:['ダウンロードフォルダから印刷してください'],
+        note:''
+      }
+    }
+  };
+
+  const g=guides[type][os]||guides[type]['other'];
+  document.getElementById('dl-complete-title').textContent=g.title;
+
+  const stepsHtml=g.steps.map((s,i)=>`
+    <div style="padding:3px 0;${i>0?'border-top:1px solid var(--border);margin-top:4px;padding-top:6px':''}">${s}</div>
+  `).join('');
+
+  document.getElementById('dl-complete-guide').innerHTML=
+    stepsHtml +
+    (g.note?`<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border);font-size:12px;color:var(--text3)">${g.note}</div>`:'');
+
+  document.getElementById('dl-complete-modal').classList.add('open');
+}
+function closeDlCompleteModal(){document.getElementById('dl-complete-modal').classList.remove('open');}
+
 // ===========================
 // カテゴリカラーパレット
 // ===========================
@@ -891,34 +1075,45 @@ function addToCart(id){
   renderCart();if(navigator.vibrate)navigator.vibrate(30);
 }
 function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);renderCart();}
-let cartTimerStart=null,cartTimerInterval=null;
+let cartTimerStart=null,cartTimerInterval=null,cartAccordionOpen=true;
+function toggleCartAccordion(){
+  cartAccordionOpen=!cartAccordionOpen;
+  const list=document.getElementById('cart-list');
+  const chev=document.getElementById('cart-chevron');
+  if(cartAccordionOpen){list.classList.remove('collapsed');if(chev)chev.classList.add('open');}
+  else{list.classList.add('collapsed');if(chev)chev.classList.remove('open');}
+}
 function clearCart(){if(!cart.length)return;cart=[];receivedAmount=0;stopCartTimer();renderCart();}
 function startCartTimer(){if(cartTimerInterval)return;cartTimerStart=Date.now();cartTimerInterval=setInterval(()=>{const s=Math.floor((Date.now()-cartTimerStart)/1000);const m=Math.floor(s/60);const ss=s%60;document.getElementById('cart-timer').textContent=`${m}:${String(ss).padStart(2,'0')}`;},1000);}
 function stopCartTimer(){clearInterval(cartTimerInterval);cartTimerInterval=null;cartTimerStart=null;document.getElementById('cart-timer').textContent='—:——';}
 function renderCart(){
   const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
   const totalQty=cart.reduce((s,c)=>s+c.qty,0);
-  // 合計2カラム表示
+  // 合計・点数 常時表示
   document.getElementById('total').textContent=fmt(total);
-  const tlbl=document.querySelector('.trow.grand .tlbl');
-  if(tlbl)tlbl.innerHTML=`合計 <span style="font-size:11px;font-weight:600;color:var(--text3)">${totalQty}点</span>`;
+  const tlbl=document.getElementById('cart-total-label');
+  if(tlbl)tlbl.innerHTML=cart.length?`合計 <span style="font-size:11px;font-weight:600;color:var(--text3)">${totalQty}点</span>`:`合計`;
   document.getElementById('checkout-btn').disabled=!cart.length;
-  const el=document.getElementById('cart-list');
+  // アコーディオン開閉状態を維持
+  const list=document.getElementById('cart-list');
+  const chev=document.getElementById('cart-chevron');
+  if(cartAccordionOpen){list.classList.remove('collapsed');if(chev)chev.classList.add('open');}
+  else{list.classList.add('collapsed');if(chev)chev.classList.remove('open');}
+  // ヘッダー内サマリー（折りたたみ時に中身をほのめかす）
+  const headSum=document.getElementById('cart-head-summary');
+  if(headSum)headSum.textContent=(!cartAccordionOpen&&cart.length)?`${totalQty}点 / ${fmt(total)}`:''
   if(!cart.length){
-    el.innerHTML='<div class="cart-empty">商品を追加してください</div>';
+    list.innerHTML='<div class="cart-empty">商品を追加してください</div>';
     document.getElementById('cashkey-display').textContent='¥—';
     document.getElementById('change-area').innerHTML='<span class="cr-placeholder">—</span>';
-    // 合計ラベルをリセット
-    if(tlbl)tlbl.innerHTML='合計';
     document.getElementById('total').textContent='¥0';
     return;
   }
-  el.innerHTML=cart.map((c,i)=>`<div class="cart-item" onclick="changeQty(${i},1)" oncontextmenu="event.preventDefault();changeQty(${i},-1)">
+  list.innerHTML=cart.map((c,i)=>`<div class="cart-item" onclick="changeQty(${i},1)" oncontextmenu="event.preventDefault();changeQty(${i},-1)">
     <div class="ci-name">${esc(c.name)}</div>
     <div style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;min-width:28px;text-align:center">×${c.qty}</div>
     <div class="ci-price">${fmt(c.price*c.qty)}</div>
   </div>`).join('');
-  // 商品グリッドのバッジ更新
   renderProductGrid();
   updateCashkeyDisplay();
 }
@@ -1002,14 +1197,31 @@ async function drawReceiptCanvas(sale,{name,email,msg,logo}){
   if(sale.received){rows.push({type:'kv',key:'お預かり',val:fmt(sale.received)});}
   if(sale.change!==null){rows.push({type:'kv',key:'お　釣　り',val:fmt(Math.abs(sale.change))});}
   rows.push({type:'divider'});
-  rows.push({type:'center',text:msg,size:13});
+  // メッセージ折り返し（幅W-PAD*2でwrap）
+  if(msg){rows.push({type:'multicenter',text:msg,size:13});}
   rows.push({type:'space'});
 
   // 高さ計算
   let totalH=PAD*2+logoH;
+  // multicenter の行数を事前計算
+  const tmpCtxH=document.createElement('canvas').getContext('2d');
   rows.forEach(r=>{
     if(r.type==='divider')totalH+=14;
     else if(r.type==='space')totalH+=10;
+    else if(r.type==='multicenter'){
+      tmpCtxH.font=`400 ${r.size||13}px Noto Sans JP, sans-serif`;
+      const words=[...r.text];
+      const maxW=W-PAD*2;
+      let line='',lines=0;
+      for(const ch of words){
+        const test=line+ch;
+        if(tmpCtxH.measureText(test).width>maxW&&line){lines++;line=ch;}
+        else line=test;
+      }
+      if(line)lines++;
+      r._lines=lines||1;
+      totalH+=LINE*r._lines+4;
+    }
     else totalH+=LINE+(r.big?8:0);
   });
 
@@ -1059,6 +1271,21 @@ async function drawReceiptCanvas(sale,{name,email,msg,logo}){
       ctx.font=`${r.bold?'700':'400'} ${r.size||13}px ${FONT}`;ctx.textAlign='center';
       ctx.fillStyle=r.color||'#444';
       ctx.fillText(r.text,W/2,y+13);y+=LINE;
+    } else if(r.type==='multicenter'){
+      ctx.font=`400 ${r.size||13}px ${FONT}`;ctx.textAlign='center';
+      ctx.fillStyle=r.color||'#444';
+      const maxW=W-PAD*2;
+      const chars=[...r.text];
+      let line='';
+      const wrappedLines=[];
+      for(const ch of chars){
+        const test=line+ch;
+        if(ctx.measureText(test).width>maxW&&line){wrappedLines.push(line);line=ch;}
+        else line=test;
+      }
+      if(line)wrappedLines.push(line);
+      wrappedLines.forEach((l,i)=>{ctx.fillText(l,W/2,y+13+LINE*i);});
+      y+=LINE*(wrappedLines.length||1)+4;
     } else if(r.type==='text'){
       ctx.font=`${r.bold?'700':'400'} ${r.size||14}px ${FONT}`;ctx.textAlign='left';
       ctx.fillStyle=r.color||'#000';
@@ -1079,9 +1306,10 @@ function downloadReceiptPng(){
   const canvas=document.getElementById('receipt-canvas');
   const a=document.createElement('a');
   a.href=canvas.toDataURL('image/png');
-  a.download=`receipt-${lastSale?.dateStr?.replace(/\//g,'')}-${lastSale?.timeStr?.replace(/:/g,'')}.png`;
+  const recFilename=`receipt-${lastSale?.dateStr?.replace(/\//g,'')}-${lastSale?.timeStr?.replace(/:/g,'')}.png`;
+  a.download=recFilename;
   a.click();
-  showToast('領収書をDLしました','success');
+  showDlCompleteModal('receipt', recFilename);
 }
 function closeReceiptModal(){document.getElementById('receipt-modal').classList.remove('open');}
 
@@ -1244,9 +1472,11 @@ async function proceedCsvExport(){
   a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
   a.download=`sales-${formatDate(new Date()).replace(/\//g,'-')}.csv`;
   a.click();
-  closeCsvArchiveModal();await renderHistory();showToast('CSV出力しました','success');
+  const csvFilename=`sales-${formatDate(new Date()).replace(/\//g,'-')}.csv`;
+  closeCsvArchiveModal();await renderHistory();
   const badge=document.getElementById('csv-exported-badge');if(badge)badge.style.display='';
   await saveSetting('lastCsvExport',new Date().toISOString());
+  showDlCompleteModal('csv', csvFilename);
 }
 function closeCsvArchiveModal(){document.getElementById('csv-archive-modal').classList.remove('open');}
 
@@ -1255,9 +1485,10 @@ function closeCsvArchiveModal(){document.getElementById('csv-archive-modal').cla
 // ===========================
 async function exportJson(){
   const data=JSON.stringify({products:await dbGetAll('products'),sales:await dbGetAll('sales'),settings:await dbGetAll('settings')},null,2);
+  const jsonFilename=`register-backup-${formatDate(new Date()).replace(/\//g,'-')}.json`;
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
-  a.download=`register-backup-${formatDate(new Date()).replace(/\//g,'-')}.json`;a.click();
-  showToast('バックアップしました','success');
+  a.download=jsonFilename;a.click();
+  showDlCompleteModal('json', jsonFilename);
 }
 async function confirmClearHistory(){
   if(!confirm('売上履歴をすべて削除しますか？この操作は取り消せません。'))return;
@@ -1293,7 +1524,7 @@ async function showStorageInfo(){
 // ===========================
 // モーダル外クリック
 // ===========================
-['product-modal','history-modal','checkout-modal','receipt-modal','archive-modal','csv-archive-modal'].forEach(id=>{
+['product-modal','history-modal','checkout-modal','receipt-modal','archive-modal','csv-archive-modal','dl-complete-modal'].forEach(id=>{
   document.getElementById(id).addEventListener('click',e=>{
     if(e.target.id!==id)return;
     if(id==='product-modal')closeProductModal();
@@ -1302,6 +1533,7 @@ async function showStorageInfo(){
     if(id==='receipt-modal')closeReceiptModal();
     if(id==='archive-modal')closeArchiveModal();
     if(id==='csv-archive-modal')closeCsvArchiveModal();
+    if(id==='dl-complete-modal')closeDlCompleteModal();
   });
 });
 
