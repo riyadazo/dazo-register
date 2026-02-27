@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#B4B6B9">
 <title>レジ</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#B4B6B9; --s1:#C2C4C7; --s2:#CCCECF; --s3:#D8DADB;
@@ -21,7 +21,7 @@ html,body { height:100%; }
 body { font-family:'Noto Sans JP',sans-serif; background:#B4B6B9; background-color:#B4B6B9; color:var(--text); overflow:hidden; height:100dvh; display:flex; flex-direction:column; }
 
 nav { display:flex; background:var(--s1); border-top:1px solid var(--border); padding-bottom:env(safe-area-inset-bottom); flex-shrink:0; z-index:50; }
-.nav-btn { flex:1; padding:10px 4px 8px; background:none; border:none; color:var(--text3); cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:'Noto Sans JP',sans-serif; font-size:10px; font-weight:700; transition:color .2s; }
+.nav-btn { flex:1; padding:10px 4px 8px; background:none; border:none; color:var(--text3); cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:'Noto Sans JP',sans-serif; font-size:10px; font-weight:800; transition:color .2s; }
 .nav-btn.active { color:var(--accent); }
 .nav-btn svg { width:20px; height:20px; stroke-width:2; }
 
@@ -32,9 +32,9 @@ nav { display:flex; background:var(--s1); border-top:1px solid var(--border); pa
 h2 { font-size:16px; font-weight:900; letter-spacing:-.3px; margin-bottom:6px; }
 .sub { font-size:11px; color:var(--text2); margin-bottom:10px; }
 .card { background:var(--s1); border-radius:var(--r); border:1px solid var(--border); padding:16px; margin-bottom:12px; }
-.section-label { font-size:10px; font-weight:700; color:var(--text3); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; }
+.section-label { font-size:10px; font-weight:800; color:var(--text3); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; }
 
-.btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:13px; border-radius:var(--rs); font-family:'Noto Sans JP',sans-serif; font-size:15px; font-weight:700; border:none; cursor:pointer; transition:all .12s; }
+.btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:13px; border-radius:var(--rs); font-family:'Noto Sans JP',sans-serif; font-size:15px; font-weight:800; border:none; cursor:pointer; transition:all .12s; }
 .btn:active { transform:scale(.97); }
 .btn-primary { background:var(--accent); color:#fff; }
 .btn-primary:active { background:var(--accent-dim); }
@@ -44,7 +44,7 @@ h2 { font-size:16px; font-weight:900; letter-spacing:-.3px; margin-bottom:6px; }
 .btn-sm { padding:9px 14px; font-size:13px; width:auto; border-radius:var(--rs); }
 
 .fgroup { margin-bottom:14px; }
-.fgroup label { display:block; font-size:11px; font-weight:700; color:var(--text2); margin-bottom:6px; letter-spacing:.5px; }
+.fgroup label { display:block; font-size:11px; font-weight:800; color:var(--text2); margin-bottom:6px; letter-spacing:.5px; }
 .finput { width:100%; padding:13px 14px; background:var(--s2); border:1px solid var(--border); border-radius:var(--rs); color:var(--text); font-family:'Noto Sans JP',sans-serif; font-size:16px; outline:none; transition:border-color .2s; }
 .finput:focus { border-color:var(--accent); }
 textarea.finput { resize:vertical; min-height:70px; }
@@ -53,7 +53,7 @@ textarea.finput { resize:vertical; min-height:70px; }
 /* カテゴリカラーラベル */
 .cat-label {
   display:inline-block; padding:2px 6px; border-radius:4px;
-  font-size:9px; font-weight:700; letter-spacing:.3px;
+  font-size:9px; font-weight:800; letter-spacing:.3px;
   line-height:1.4; white-space:nowrap; max-width:100%;
   overflow:hidden; text-overflow:ellipsis;
 }
@@ -69,48 +69,50 @@ textarea.finput { resize:vertical; min-height:70px; }
 .product-btn:active { background:var(--s3); border-color:var(--accent); transform:scale(.96); }
 .product-btn .pthumb-img { width:34px; height:34px; border-radius:5px; object-fit:cover; margin-bottom:2px; }
 .product-btn .pthumb-emoji { font-size:26px; line-height:1; margin-bottom:2px; }
-.product-btn .pname { font-size:11px; font-weight:700; line-height:1.3; width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:0 4px; }
-.product-btn .pprice { font-family:'DM Mono',monospace; font-size:12px; color:var(--accent); }
+.product-btn .pname { font-size:11px; font-weight:800; line-height:1.3; width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:0 4px; }
+.product-btn .pprice { font-family:'Noto Sans JP',sans-serif; font-size:12px; color:var(--accent); }
 .product-btn .pnew { position:absolute; top:4px; right:4px; background:var(--red); color:#fff; font-size:8px; font-weight:900; padding:1px 4px; border-radius:3px; }
-.product-btn .pqty { position:absolute; top:2px; left:2px; background:var(--accent); color:#fff; font-size:18px; font-weight:900; min-width:30px; height:30px; padding:0 6px; border-radius:99px; font-family:'DM Mono',monospace; line-height:1; text-align:center; z-index:2; display:flex; align-items:center; justify-content:center; }
+.product-btn .pqty { position:absolute; top:2px; left:2px; background:var(--accent); color:#fff; font-size:18px; font-weight:900; min-width:30px; height:30px; padding:0 6px; border-radius:99px; font-family:'Noto Sans JP',sans-serif; line-height:1; text-align:center; z-index:2; display:flex; align-items:center; justify-content:center; }
 
 /* カート */
 .cart-wrap { background:var(--s1); border:1px solid var(--border); border-radius:var(--r) var(--r) 0 0; margin-bottom:0; overflow:hidden; border-bottom:none; }
 .cart-head { padding:7px 12px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:6px; cursor:pointer; user-select:none; }
-.cart-head-label { font-size:11px; font-weight:700; color:var(--text2); letter-spacing:.5px; flex:1; display:flex; align-items:center; gap:5px; }
+.cart-head-label { font-size:11px; font-weight:800; color:var(--text2); letter-spacing:.5px; flex:1; display:flex; align-items:center; gap:5px; }
 .cart-chevron { font-size:10px; color:var(--text3); transition:transform .2s; line-height:1; }
 .cart-chevron.open { transform:rotate(180deg); }
-.cart-clear { background:none; border:none; color:var(--red); font-size:11px; font-weight:700; cursor:pointer; padding:2px 6px; }
+.cart-clear { background:none; border:none; color:var(--red); font-size:11px; font-weight:800; cursor:pointer; padding:2px 6px; }
 .cart-list { max-height:160px; overflow-y:auto; transition:max-height .22s ease, opacity .18s ease; overflow:hidden; }
 .cart-list.collapsed { max-height:0 !important; opacity:0; }
 .cart-empty { padding:18px; text-align:center; color:var(--text3); font-size:12px; }
 .cart-item { padding:5px 12px; display:flex; align-items:center; gap:8px; border-bottom:none; animation:fadeSlide .15s ease; }
 @keyframes fadeSlide { from{opacity:0;transform:translateX(-6px)} to{opacity:1} }
 .ci-name { flex:1; font-size:12px; font-weight:600; color:var(--text2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.ci-price { font-family:'DM Mono',monospace; font-size:12px; color:var(--text2); min-width:56px; text-align:right; }
+.ci-price { font-family:'Noto Sans JP',sans-serif; font-size:12px; color:var(--text2); min-width:56px; text-align:right; }
 .ci-qty { display:flex; align-items:center; gap:5px; }
 
 
 /* 合計 */
 .total-wrap { background:var(--s1); border:1px solid var(--border); border-radius:0 0 var(--r) var(--r); padding:8px 12px 10px; margin-bottom:8px; border-top:1px solid var(--border); flex-shrink:0; }
 .trow { display:flex; justify-content:space-between; padding:2px 0; font-size:12px; }
-.trow .tval { font-family:'DM Mono',monospace; }
+.trow .tval { font-family:'Noto Sans JP',sans-serif; }
 .trow.grand { border-top:1px solid var(--border); margin-top:5px; padding-top:6px; }
-.trow.grand .tlbl { font-size:13px; font-weight:700; display:flex; align-items:baseline; gap:8px; }
-.trow.grand .tval { font-size:23px; font-weight:700; color:var(--accent); }
+.trow.grand .tlbl { font-size:13px; font-weight:800; display:flex; align-items:baseline; gap:8px; }
+.trow.grand .tval { font-size:23px; font-weight:800; color:var(--accent); }
 
 /* 紙幣テンキー */
-.cashkey-wrap { background:var(--s2); border-radius:var(--rs); padding:8px 10px 6px; margin-bottom:8px; border:1px solid var(--border); }
-.cashkey-top-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
-.cashkey-label { font-size:11px; color:var(--text3); font-weight:700; white-space:nowrap; }
-.cashkey-value { font-family:'DM Mono',monospace; font-size:18px; font-weight:700; color:var(--text2); flex:1; text-align:right; }
-.cashkey-clr-btn { flex-shrink:0; background:none; border:none; color:var(--red); font-size:15px; font-weight:700; cursor:pointer; padding:2px 6px; white-space:nowrap; font-family:'Noto Sans JP',sans-serif; }
+.cashkey-wrap { background:var(--s1); border-radius:var(--r); margin-bottom:8px; border:1px solid var(--border); overflow:hidden; }
+.cashkey-top-row { padding:7px 12px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:6px; cursor:pointer; user-select:none; }
+.cashkey-label { font-size:11px; font-weight:800; color:var(--text2); letter-spacing:.5px; flex:1; display:flex; align-items:center; gap:5px; }
+.cashkey-value { font-family:'Noto Sans JP',sans-serif; font-size:18px; font-weight:800; color:var(--text2); margin-left:auto; }
+.cashkey-clr-btn { flex-shrink:0; background:none; border:none; color:var(--red); font-size:11px; font-weight:800; cursor:pointer; padding:2px 6px 2px 24px; white-space:nowrap; font-family:'Noto Sans JP',sans-serif; }
 .cashkey-clr-btn:active { opacity:.7; }
+.cashkey-body { padding:8px 10px 6px; transition:max-height .22s ease, opacity .18s ease; overflow:hidden; max-height:400px; }
+.cashkey-body.collapsed { max-height:0 !important; opacity:0; padding:0 10px; }
 .cashkey-grid { display:flex; flex-direction:column; gap:5px; margin-top:8px; }
 .cashkey-row { display:grid; gap:5px; }
 .cashkey-row.two { grid-template-columns:1fr 1fr; }
 .cashkey-row.one { grid-template-columns:1fr; }
-.cashkey-btn { padding:13px 4px; border-radius:var(--rs); background:var(--s1); border:1px solid var(--border); font-family:'DM Mono',monospace; font-size:25px; font-weight:400; color:var(--text); cursor:pointer; text-align:center; transition:all .1s; min-height:calc(1em * 1.2 + 26px); }
+.cashkey-btn { padding:13px 4px; border-radius:var(--rs); background:var(--s1); border:1px solid var(--border); font-family:'Noto Sans JP',sans-serif; font-size:25px; font-weight:500; color:var(--text); cursor:pointer; text-align:center; transition:all .1s; min-height:calc(1em * 1.2 + 26px); }
 .cashkey-btn:active { background:var(--s3); transform:scale(.95); }
 
 /* お釣りエリア（常時確保） */
@@ -118,8 +120,8 @@ textarea.finput { resize:vertical; min-height:70px; }
   margin-top:4px; min-height:46px;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
 }
-.cr-label { font-size:11px; color:var(--text3); margin-bottom:1px; font-weight:700; }
-.cr-amount { font-family:'DM Mono',monospace; font-size:25px; font-weight:700; color:var(--green); }
+.cr-label { font-size:11px; color:var(--text3); margin-bottom:1px; font-weight:800; }
+.cr-amount { font-family:'Noto Sans JP',sans-serif; font-size:25px; font-weight:800; color:var(--green); }
 .cr-amount.negative { color:var(--red); }
 .cr-placeholder { font-size:11px; color:var(--text3); }
 
@@ -134,8 +136,8 @@ textarea.finput { resize:vertical; min-height:70px; }
 .pc-thumb img { width:100%; height:100%; object-fit:cover; }
 .pc-thumb .pc-emoji { font-size:24px; line-height:1; }
 .pc-info { flex:1; min-width:0; }
-.pc-name { font-size:14px; font-weight:700; }
-.pc-price { font-family:'DM Mono',monospace; font-size:13px; color:var(--accent); margin-top:2px; }
+.pc-name { font-size:14px; font-weight:800; }
+.pc-price { font-family:'Noto Sans JP',sans-serif; font-size:13px; color:var(--accent); margin-top:2px; }
 .pc-actions { display:flex; gap:6px; }
 .icon-btn { width:34px; height:34px; border-radius:var(--rs); display:flex; align-items:center; justify-content:center; border:none; cursor:pointer; transition:all .12s; }
 .icon-btn:active { transform:scale(.92); }
@@ -149,7 +151,7 @@ textarea.finput { resize:vertical; min-height:70px; }
 .thumb-preview { width:48px; height:48px; border-radius:8px; overflow:hidden; background:var(--s2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; }
 .thumb-preview .prev-emoji { font-size:28px; }
 .thumb-type-tabs { display:flex; gap:6px; margin-bottom:10px; }
-.thumb-tab { flex:1; padding:8px; border-radius:var(--rs); font-size:12px; font-weight:700; border:1px solid var(--border); background:var(--s2); color:var(--text2); cursor:pointer; }
+.thumb-tab { flex:1; padding:8px; border-radius:var(--rs); font-size:12px; font-weight:800; border:1px solid var(--border); background:var(--s2); color:var(--text2); cursor:pointer; }
 .thumb-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
 
 /* ロゴアップロード */
@@ -167,10 +169,10 @@ textarea.finput { resize:vertical; min-height:70px; }
 
 /* 履歴 */
 .today-summary { background:linear-gradient(135deg,rgba(92,107,122,.10) 0%,rgba(92,107,122,.04) 100%); border:1px solid rgba(92,107,122,.25); border-radius:var(--r); padding:16px; margin-bottom:16px; }
-.ts-title { font-size:11px; font-weight:700; color:var(--accent); letter-spacing:1px; margin-bottom:10px; }
+.ts-title { font-size:11px; font-weight:800; color:var(--accent); letter-spacing:1px; margin-bottom:10px; }
 .ts-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .ts-item .ts-label { font-size:10px; color:var(--text2); margin-bottom:3px; }
-.ts-item .ts-value { font-family:'DM Mono',monospace; font-size:20px; font-weight:700; color:var(--accent); }
+.ts-item .ts-value { font-family:'Noto Sans JP',sans-serif; font-size:20px; font-weight:800; color:var(--accent); }
 .ts-item .ts-unit { font-size:11px; color:var(--text2); }
 .history-item { background:var(--s1); border:1px solid var(--border); border-radius:var(--r); padding:14px; margin-bottom:8px; cursor:pointer; transition:border-color .15s; }
 .history-item:active { border-color:var(--accent); }
@@ -178,20 +180,20 @@ textarea.finput { resize:vertical; min-height:70px; }
 .hi-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
 .hi-left { display:flex; flex-direction:column; gap:3px; }
 .hi-time { font-size:12px; color:var(--text2); }
-.hi-amount { font-family:'DM Mono',monospace; font-size:18px; font-weight:700; color:var(--accent); }
-.hi-archived-label { font-size:10px; font-weight:700; color:var(--red); letter-spacing:.5px; }
+.hi-amount { font-family:'Noto Sans JP',sans-serif; font-size:18px; font-weight:800; color:var(--accent); }
+.hi-archived-label { font-size:10px; font-weight:800; color:var(--red); letter-spacing:.5px; }
 .hi-items { display:flex; flex-wrap:wrap; gap:5px; }
 .hi-tag { background:var(--s2); border:1px solid var(--border); border-radius:6px; padding:3px 8px; font-size:11px; color:var(--text2); }
-.date-sep { font-size:11px; font-weight:700; color:var(--text3); letter-spacing:1px; padding:14px 0 8px; }
+.date-sep { font-size:11px; font-weight:800; color:var(--text3); letter-spacing:1px; padding:14px 0 8px; }
 .hdi-row { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px; }
 .hdi-row:last-child { border-bottom:none; }
-.hdi-val { font-family:'DM Mono',monospace; color:var(--text2); }
+.hdi-val { font-family:'Noto Sans JP',sans-serif; color:var(--text2); }
 
 /* CSV前アーカイブ処理 */
 .archive-item-row { background:var(--s2); border:1px solid var(--border); border-radius:var(--rs); padding:12px 14px; margin-bottom:8px; }
 .air-header { display:flex; justify-content:space-between; margin-bottom:4px; }
 .air-time { font-size:12px; color:var(--text2); }
-.air-amount { font-family:'DM Mono',monospace; font-size:15px; font-weight:700; color:var(--accent); }
+.air-amount { font-family:'Noto Sans JP',sans-serif; font-size:15px; font-weight:800; color:var(--accent); }
 .air-memo { font-size:11px; color:var(--text3); font-style:italic; margin-bottom:8px; }
 .air-btns { display:flex; gap:6px; }
 
@@ -199,7 +201,7 @@ textarea.finput { resize:vertical; min-height:70px; }
 .receipt-modal .modal { background:#f5f5f3; color:#252628; }
 
 /* トースト */
-.toast { position:fixed; bottom:90px; left:50%; transform:translateX(-50%) translateY(10px); background:var(--s3); border:1px solid var(--border); border-radius:99px; padding:10px 20px; font-size:13px; font-weight:700; z-index:300; opacity:0; transition:all .25s; white-space:nowrap; pointer-events:none; }
+.toast { position:fixed; bottom:90px; left:50%; transform:translateX(-50%) translateY(10px); background:var(--s3); border:1px solid var(--border); border-radius:99px; padding:10px 20px; font-size:13px; font-weight:800; z-index:300; opacity:0; transition:all .25s; white-space:nowrap; pointer-events:none; }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 .toast.success { border-color:var(--green); color:var(--green); }
 .toast.error { border-color:var(--red); color:var(--red); }
@@ -229,7 +231,7 @@ textarea.finput { resize:vertical; min-height:70px; }
 <div class="page active" id="p-register">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
     <h2 style="margin-bottom:0">レジ</h2>
-    <span id="cart-timer" style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:.5px">—:——</span>
+    <span id="cart-timer" style="font-size:11px;color:var(--text3);font-family:'Noto Sans JP',sans-serif;letter-spacing:.5px">—:——</span>
   </div>
   <div class="product-grid" id="product-grid"></div>
   <div class="cart-wrap">
@@ -251,26 +253,31 @@ textarea.finput { resize:vertical; min-height:70px; }
   </div>
   <!-- テンキー -->
   <div class="cashkey-wrap">
-    <div class="cashkey-top-row">
-      <span class="cashkey-label">お釣り計算</span>
+    <div class="cashkey-top-row" onclick="toggleCashkeyAccordion()">
+      <span class="cashkey-label">
+        <span class="cart-chevron open" id="cashkey-chevron">▲</span>
+        お預かり金額
+      </span>
       <span class="cashkey-value" id="cashkey-display">¥—</span>
-      <button class="cashkey-clr-btn" onclick="cashkeyClear()">クリア</button>
+      <button class="cashkey-clr-btn" onclick="event.stopPropagation();cashkeyClear()">クリア</button>
     </div>
-    <div class="cashkey-grid">
-      <div class="cashkey-row two">
-        <button class="cashkey-btn" onclick="cashkeyTap(10000)">10000</button>
-        <button class="cashkey-btn" onclick="cashkeyTap(5000)">5000</button>
+    <div class="cashkey-body" id="cashkey-body">
+      <div class="cashkey-grid">
+        <div class="cashkey-row two">
+          <button class="cashkey-btn" onclick="cashkeyTap(10000)">10000</button>
+          <button class="cashkey-btn" onclick="cashkeyTap(5000)">5000</button>
+        </div>
+        <div class="cashkey-row one">
+          <button class="cashkey-btn" onclick="cashkeyTap(1000)">1000</button>
+        </div>
+        <div class="cashkey-row one">
+          <button class="cashkey-btn" onclick="cashkeyTap(500)">500</button>
+        </div>
       </div>
-      <div class="cashkey-row one">
-        <button class="cashkey-btn" onclick="cashkeyTap(1000)">1000</button>
+      <!-- お釣りエリア常時確保 -->
+      <div class="change-area" id="change-area">
+        <span class="cr-placeholder">—</span>
       </div>
-      <div class="cashkey-row one">
-        <button class="cashkey-btn" onclick="cashkeyTap(500)">500</button>
-      </div>
-    </div>
-    <!-- お釣りエリア常時確保 -->
-    <div class="change-area" id="change-area">
-      <span class="cr-placeholder">—</span>
     </div>
   </div>
   <button class="btn btn-primary" onclick="checkout()" id="checkout-btn" disabled>
@@ -300,7 +307,7 @@ textarea.finput { resize:vertical; min-height:70px; }
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       CSVで売上出力
     </button>
-    <div id="csv-exported-badge" style="display:none;flex-shrink:0;padding:6px 10px;border-radius:99px;background:rgba(46,107,74,.12);border:1px solid rgba(46,107,74,.3);font-size:11px;font-weight:700;color:var(--green)">✓ 出力済み</div>
+    <div id="csv-exported-badge" style="display:none;flex-shrink:0;padding:6px 10px;border-radius:99px;background:rgba(46,107,74,.12);border:1px solid rgba(46,107,74,.3);font-size:11px;font-weight:800;color:var(--green)">✓ 出力済み</div>
   </div>
   <div id="history-list-wrap"></div>
 </div>
@@ -391,8 +398,8 @@ textarea.finput { resize:vertical; min-height:70px; }
     <div class="fgroup"><label>価格（税込）</label><input type="number" class="finput" id="pm-price" placeholder="500" inputmode="numeric"></div>
     <div class="fgroup"><label>カテゴリ（任意）</label><input type="text" class="finput" id="pm-category" placeholder="例: 新刊、既刊、グッズ"></div>
     <div class="fgroup" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
-      <label style="margin-bottom:0;font-size:13px;font-weight:700">NEWアイコン</label>
-      <button id="new-toggle" onclick="toggleNew()" style="padding:8px 20px;border-radius:99px;font-size:13px;font-weight:700;border:1px solid var(--border);background:var(--s2);color:var(--text2);cursor:pointer;transition:all .15s">OFF</button>
+      <label style="margin-bottom:0;font-size:13px;font-weight:800">NEWアイコン</label>
+      <button id="new-toggle" onclick="toggleNew()" style="padding:8px 20px;border-radius:99px;font-size:13px;font-weight:800;border:1px solid var(--border);background:var(--s2);color:var(--text2);cursor:pointer;transition:all .15s">OFF</button>
     </div>
     <button class="btn btn-primary" onclick="saveProduct()" style="margin-bottom:10px">保存する</button>
     <button class="btn btn-ghost" onclick="closeProductModal()">キャンセル</button>
@@ -449,7 +456,7 @@ textarea.finput { resize:vertical; min-height:70px; }
     </div>
     <div id="co-change-display" style="text-align:center;margin-bottom:16px;display:none">
       <div style="font-size:12px;color:var(--text2)">お釣り</div>
-      <div style="font-family:'DM Mono',monospace;font-size:32px;font-weight:700" id="co-change"></div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:32px;font-weight:800" id="co-change"></div>
     </div>
     <button class="btn btn-primary" onclick="showReceiptModal()" style="margin-bottom:8px">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -946,8 +953,8 @@ function initDragSort(){
 function toggleNew(){
   pmIsNew=!pmIsNew;
   const b=document.getElementById('new-toggle');
-  if(pmIsNew){b.textContent='ON';b.style.cssText='padding:8px 20px;border-radius:99px;font-size:13px;font-weight:700;background:var(--red);color:#fff;border:1px solid var(--red);cursor:pointer;transition:all .15s';}
-  else{b.textContent='OFF';b.style.cssText='padding:8px 20px;border-radius:99px;font-size:13px;font-weight:700;background:var(--s2);color:var(--text2);border:1px solid var(--border);cursor:pointer;transition:all .15s';}
+  if(pmIsNew){b.textContent='ON';b.style.cssText='padding:8px 20px;border-radius:99px;font-size:13px;font-weight:800;background:var(--red);color:#fff;border:1px solid var(--red);cursor:pointer;transition:all .15s';}
+  else{b.textContent='OFF';b.style.cssText='padding:8px 20px;border-radius:99px;font-size:13px;font-weight:800;background:var(--s2);color:var(--text2);border:1px solid var(--border);cursor:pointer;transition:all .15s';}
 }
 
 function openProductModal(id=null){
@@ -957,7 +964,7 @@ function openProductModal(id=null){
   currentThumbImage=null;currentThumbEmoji=null;pmIsNew=false;
   document.getElementById('product-modal-title').textContent=id?'商品を編集':'商品を追加';
   const b=document.getElementById('new-toggle');
-  b.textContent='OFF';b.style.cssText='padding:8px 20px;border-radius:99px;font-size:13px;font-weight:700;background:var(--s2);color:var(--text2);border:1px solid var(--border);cursor:pointer;transition:all .15s';
+  b.textContent='OFF';b.style.cssText='padding:8px 20px;border-radius:99px;font-size:13px;font-weight:800;background:var(--s2);color:var(--text2);border:1px solid var(--border);cursor:pointer;transition:all .15s';
   switchThumbTab('emoji');
   if(id){
     const p=products.find(x=>x.id===id);
@@ -967,7 +974,7 @@ function openProductModal(id=null){
       document.getElementById('pm-category').value=p.category||'';
       if(p.image){currentThumbImage=p.image;switchThumbTab('image');}
       else if(p.emoji){currentThumbEmoji=p.emoji;document.getElementById('pm-emoji').value=p.emoji;}
-      if(p.isNew){pmIsNew=true;b.textContent='ON';b.style.cssText='padding:8px 20px;border-radius:99px;font-size:13px;font-weight:700;background:var(--red);color:#fff;border:1px solid var(--red);cursor:pointer;transition:all .15s';}
+      if(p.isNew){pmIsNew=true;b.textContent='ON';b.style.cssText='padding:8px 20px;border-radius:99px;font-size:13px;font-weight:800;background:var(--red);color:#fff;border:1px solid var(--red);cursor:pointer;transition:all .15s';}
     }
   }
   updateThumbPreview();
@@ -1084,7 +1091,14 @@ function addToCart(id){
   renderCart();if(navigator.vibrate)navigator.vibrate(30);
 }
 function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);renderCart();}
-let cartTimerStart=null,cartTimerInterval=null,cartAccordionOpen=true;
+let cartTimerStart=null,cartTimerInterval=null,cartAccordionOpen=true,cashkeyAccordionOpen=true;
+function toggleCashkeyAccordion(){
+  cashkeyAccordionOpen=!cashkeyAccordionOpen;
+  const body=document.getElementById('cashkey-body');
+  const chev=document.getElementById('cashkey-chevron');
+  if(cashkeyAccordionOpen){body.classList.remove('collapsed');if(chev)chev.classList.add('open');}
+  else{body.classList.add('collapsed');if(chev)chev.classList.remove('open');}
+}
 function toggleCartAccordion(){
   cartAccordionOpen=!cartAccordionOpen;
   const list=document.getElementById('cart-list');
@@ -1120,7 +1134,7 @@ function renderCart(){
   }
   list.innerHTML=cart.map((c,i)=>`<div class="cart-item" onclick="changeQty(${i},1)" oncontextmenu="event.preventDefault();changeQty(${i},-1)">
     <div class="ci-name">${esc(c.name)}</div>
-    <div style="font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;min-width:28px;text-align:center">×${c.qty}</div>
+    <div style="font-size:11px;color:var(--text3);font-family:'Noto Sans JP',sans-serif;min-width:28px;text-align:center">×${c.qty}</div>
     <div class="ci-price">${fmt(c.price*c.qty)}</div>
   </div>`).join('');
   renderProductGrid();
@@ -1218,7 +1232,7 @@ async function drawReceiptCanvas(sale,{name,email,msg,logo}){
     if(r.type==='divider')totalH+=14;
     else if(r.type==='space')totalH+=10;
     else if(r.type==='multicenter'){
-      tmpCtxH.font=`400 ${r.size||13}px Noto Sans JP, sans-serif`;
+      tmpCtxH.font=`500 ${r.size||13}px Noto Sans JP, sans-serif`;
       const words=[...r.text];
       const maxW=W-PAD*2;
       let line='',lines=0;
@@ -1281,7 +1295,7 @@ async function drawReceiptCanvas(sale,{name,email,msg,logo}){
       ctx.fillStyle=r.color||'#444';
       ctx.fillText(r.text,W/2,y+13);y+=LINE;
     } else if(r.type==='multicenter'){
-      ctx.font=`400 ${r.size||13}px ${FONT}`;ctx.textAlign='center';
+      ctx.font=`500 ${r.size||13}px ${FONT}`;ctx.textAlign='center';
       ctx.fillStyle=r.color||'#444';
       const maxW=W-PAD*2;
       const chars=[...r.text];
@@ -1304,7 +1318,7 @@ async function drawReceiptCanvas(sale,{name,email,msg,logo}){
       ctx.font=`${r.bold?'700':'400'} ${fs}px ${FONT}`;
       ctx.textAlign='left';ctx.fillStyle='#000';
       ctx.fillText(r.key,PAD,y+fs);
-      ctx.textAlign='right';ctx.font=`${r.bold?'700':'500'} ${fs}px 'DM Mono',monospace`;
+      ctx.textAlign='right';ctx.font=`${r.bold?'700':'500'} ${fs}px 'Noto Sans JP',sans-serif`;
       ctx.fillText(r.val,W-PAD,y+fs);
       y+=LINE+(r.big?8:0);
     }
@@ -1366,12 +1380,12 @@ async function renderHistory(){
   Object.entries(todayItemMap).forEach(([id,v])=>{if(!products.find(p=>p.id===parseInt(id)))sortedTodayItems.push({id:parseInt(id),...v});});
   const itemBreakdownHtml=sortedTodayItems.length?`
     <div style="margin-top:10px;border-top:1px solid rgba(0,0,0,.08);padding-top:8px">
-      <div style="font-size:10px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:6px">商品別 販売数</div>
+      <div style="font-size:10px;font-weight:800;color:var(--accent);letter-spacing:1px;margin-bottom:6px">商品別 販売数</div>
       ${sortedTodayItems.map(it=>`
         <div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:12px">
           <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:8px;color:var(--text2)">${esc(it.name)}</span>
-          <span style="font-family:'DM Mono',monospace;color:var(--text3);margin-right:10px">${it.qty}個</span>
-          <span style="font-family:'DM Mono',monospace;color:var(--accent)">${fmt(it.total)}</span>
+          <span style="font-family:'Noto Sans JP',sans-serif;color:var(--text3);margin-right:10px">${it.qty}個</span>
+          <span style="font-family:'Noto Sans JP',sans-serif;color:var(--accent)">${fmt(it.total)}</span>
         </div>`).join('')}
     </div>`:'';
   document.getElementById('today-summary-wrap').innerHTML=`
@@ -1382,7 +1396,7 @@ async function renderHistory(){
         <div class="ts-item"><div class="ts-label">会計件数</div><div class="ts-value">${todaySales.length}<span class="ts-unit"> 件</span></div></div>
       </div>
       ${itemBreakdownHtml}
-      ${archCount>0?`<div style="margin-top:10px;font-size:12px;color:var(--red);font-weight:700">⚠ アーカイブ ${archCount}件 — CSV出力前に処理が必要です</div>`:''}
+      ${archCount>0?`<div style="margin-top:10px;font-size:12px;color:var(--red);font-weight:800">⚠ アーカイブ ${archCount}件 — CSV出力前に処理が必要です</div>`:''}
     </div>`;
   const listEl=document.getElementById('history-list-wrap');
   if(!sales.length){listEl.innerHTML='<div class="card" style="text-align:center;color:var(--text3);font-size:13px">まだ会計履歴がありません</div>';return;}
@@ -1409,14 +1423,14 @@ async function showHistoryDetail(id){
   const archSec=!sale.archived
     ?`<button class="btn btn-red btn-sm" style="width:auto;margin-top:14px" onclick="openArchiveModal(${id})">この会計をアーカイブ</button>`
     :`<div style="margin-top:14px;padding:10px 12px;background:rgba(224,85,85,.08);border:1px solid rgba(224,85,85,.2);border-radius:var(--rs)">
-        <div style="font-size:11px;font-weight:700;color:var(--red);margin-bottom:4px">ARCHIVED</div>
+        <div style="font-size:11px;font-weight:800;color:var(--red);margin-bottom:4px">ARCHIVED</div>
         <div style="font-size:13px;color:var(--text2)">${sale.archiveMemo?esc(sale.archiveMemo):'メモなし'}</div>
       </div>`;
   document.getElementById('history-detail-content').innerHTML=`
     <div class="modal-title">${sale.dateStr} ${sale.timeStr}</div>
     <div>
       ${sale.items.map(i=>`<div class="hdi-row"><span>${esc(i.name)}</span><span class="hdi-val">${fmt(i.price)} × ${i.qty} = ${fmt(i.price*i.qty)}</span></div>`).join('')}
-      <div class="hdi-row" style="font-weight:700"><span>合計</span><span style="color:var(--accent);font-family:'DM Mono',monospace;font-size:18px">${fmt(sale.total)}</span></div>
+      <div class="hdi-row" style="font-weight:800"><span>合計</span><span style="color:var(--accent);font-family:'Noto Sans JP',sans-serif;font-size:18px">${fmt(sale.total)}</span></div>
       ${sale.received?`<div class="hdi-row"><span style="color:var(--text2)">お預かり</span><span class="hdi-val">${fmt(sale.received)}</span></div>`:''}
       ${sale.change!==null?`<div class="hdi-row"><span style="color:var(--text2)">お釣り</span><span class="hdi-val" style="color:var(--green)">${fmt(Math.abs(sale.change))}</span></div>`:''}
     </div>
