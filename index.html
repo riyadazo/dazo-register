@@ -7,18 +7,20 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#B4B6B9">
 <title>レジ</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#B4B6B9; --s1:#C2C4C7; --s2:#CCCECF; --s3:#D8DADB;
-  --border:#A0A2A5; --accent:#4E5F6D; --accent-dim:#3A4B58;
+  --bg:#B4B6B9; --s1:#C8CACD; --s2:#D2D4D6; --s3:#DCDEE0;
+  --border:#B8BABB; --accent:#4E5F6D; --accent-dim:#3A4B58;
   --green:#2E6B4A; --red:#d94444; --blue:#3A5F94;
-  --text:#18191B; --text2:#404347; --text3:#747880;
+  --text:#18191B; --text2:#363A3E; --text3:#64686E;
   --r:14px; --rs:9px;
+  --font-base:'Noto Sans JP',system-ui,-apple-system,sans-serif;
+  --font-mono:'DM Mono','Noto Sans JP',ui-monospace,monospace;
 }
 * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
 html,body { height:100%; }
-body { font-family:'Noto Sans JP',sans-serif; background:#B4B6B9; background-color:#B4B6B9; color:var(--text); overflow:hidden; height:100dvh; display:flex; flex-direction:column; }
+body { font-family:var(--font-base); background:#B4B6B9; background-color:#B4B6B9; color:var(--text); overflow:hidden; height:100dvh; display:flex; flex-direction:column; }
 
 nav { display:flex; background:var(--s1); border-top:1px solid var(--border); padding-bottom:env(safe-area-inset-bottom); flex-shrink:0; z-index:50; }
 .nav-btn { flex:1; padding:10px 4px 8px; background:none; border:none; color:var(--text3); cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:'Noto Sans JP',sans-serif; font-size:10px; font-weight:800; transition:color .2s; }
@@ -27,7 +29,7 @@ nav { display:flex; background:var(--s1); border-top:1px solid var(--border); pa
 
 .pages { flex:1; overflow:hidden; position:relative; }
 .page { position:absolute; inset:0; overflow-y:auto; overflow-x:hidden; padding:10px 12px 14px; opacity:0; pointer-events:none; transition:opacity .2s; -webkit-overflow-scrolling:touch; }
-.page.active { opacity:1; pointer-events:all; }
+.page.active { opacity:1; pointer-events:auto; }
 
 h2 { font-size:16px; font-weight:900; letter-spacing:-.3px; margin-bottom:6px; }
 .sub { font-size:11px; color:var(--text2); margin-bottom:10px; }
@@ -70,9 +72,9 @@ textarea.finput { resize:vertical; min-height:70px; }
 .product-btn .pthumb-img { width:34px; height:34px; border-radius:5px; object-fit:cover; margin-bottom:2px; }
 .product-btn .pthumb-emoji { font-size:26px; line-height:1; margin-bottom:2px; }
 .product-btn .pname { font-size:11px; font-weight:800; line-height:1.3; width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding:0 4px; }
-.product-btn .pprice { font-family:'Noto Sans JP',sans-serif; font-size:12px; color:var(--accent); }
+.product-btn .pprice { font-family:var(--font-mono); font-size:12px; color:var(--accent); }
 .product-btn .pnew { position:absolute; top:4px; right:4px; background:var(--red); color:#fff; font-size:8px; font-weight:900; padding:1px 4px; border-radius:3px; }
-.product-btn .pqty { position:absolute; top:2px; left:2px; background:var(--accent); color:#fff; font-size:18px; font-weight:900; min-width:30px; height:30px; padding:0 6px; border-radius:99px; font-family:'Noto Sans JP',sans-serif; line-height:1; text-align:center; z-index:2; display:flex; align-items:center; justify-content:center; }
+.product-btn .pqty { position:absolute; top:2px; left:2px; background:var(--accent); color:#fff; font-size:18px; font-weight:900; min-width:30px; height:30px; padding:0 6px; border-radius:99px; font-family:var(--font-mono); line-height:1; text-align:center; z-index:2; display:flex; align-items:center; justify-content:center; }
 
 /* カート */
 .cart-wrap { background:var(--s1); border:1px solid var(--border); border-radius:var(--r) var(--r) 0 0; margin-bottom:0; overflow:hidden; border-bottom:none; }
@@ -86,24 +88,24 @@ textarea.finput { resize:vertical; min-height:70px; }
 .cart-empty { padding:18px; text-align:center; color:var(--text3); font-size:12px; }
 .cart-item { padding:5px 12px; display:flex; align-items:center; gap:8px; border-bottom:none; animation:fadeSlide .15s ease; }
 @keyframes fadeSlide { from{opacity:0;transform:translateX(-6px)} to{opacity:1} }
-.ci-name { flex:1; font-size:12px; font-weight:600; color:var(--text2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.ci-price { font-family:'Noto Sans JP',sans-serif; font-size:12px; color:var(--text2); min-width:56px; text-align:right; }
+.ci-name { flex:1; font-size:12px; font-weight:600; color:var(--text2); -webkit-text-fill-color:var(--text2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ci-price { font-family:var(--font-mono); font-size:12px; color:var(--text2); min-width:56px; text-align:right; }
 .ci-qty { display:flex; align-items:center; gap:5px; }
 
 
 /* 合計 */
-.total-wrap { background:var(--s1); border:1px solid var(--border); border-radius:0 0 var(--r) var(--r); padding:8px 12px 10px; margin-bottom:8px; border-top:1px solid var(--border); flex-shrink:0; }
+.total-wrap { background:var(--s1); border:1px solid var(--border); border-radius:0 0 var(--r) var(--r); padding:6px 12px; margin-bottom:8px; border-top:1px solid var(--border); flex-shrink:0; }
 .trow { display:flex; justify-content:space-between; padding:2px 0; font-size:12px; }
-.trow .tval { font-family:'Noto Sans JP',sans-serif; }
+.trow .tval { font-family:var(--font-mono); }
 .trow.grand { border-top:1px solid var(--border); margin-top:5px; padding-top:6px; }
-.trow.grand .tlbl { font-size:13px; font-weight:800; display:flex; align-items:baseline; gap:8px; }
-.trow.grand .tval { font-size:23px; font-weight:800; color:var(--accent); }
+.trow.grand .tlbl { font-size:13px; font-weight:800; display:flex; align-items:center; gap:8px; }
+.trow.grand .tval { font-size:23px; font-weight:800; color:var(--accent); display:flex; align-items:center; }
 
 /* 紙幣テンキー */
 .cashkey-wrap { background:var(--s1); border-radius:var(--r); margin-bottom:8px; border:1px solid var(--border); overflow:hidden; }
 .cashkey-top-row { padding:7px 12px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:6px; cursor:pointer; user-select:none; }
 .cashkey-label { font-size:11px; font-weight:800; color:var(--text2); letter-spacing:.5px; flex:1; display:flex; align-items:center; gap:5px; }
-.cashkey-value { font-family:'Noto Sans JP',sans-serif; font-size:18px; font-weight:800; color:var(--text2); margin-left:auto; }
+.cashkey-value { font-family:var(--font-mono); font-size:18px; font-weight:800; color:var(--text2); margin-left:auto; }
 .cashkey-clr-btn { flex-shrink:0; background:none; border:none; color:var(--red); font-size:11px; font-weight:800; cursor:pointer; padding:2px 6px 2px 24px; white-space:nowrap; font-family:'Noto Sans JP',sans-serif; }
 .cashkey-clr-btn:active { opacity:.7; }
 .cashkey-body { padding:8px 10px 6px; transition:max-height .22s ease, opacity .18s ease; overflow:hidden; max-height:400px; }
@@ -112,7 +114,7 @@ textarea.finput { resize:vertical; min-height:70px; }
 .cashkey-row { display:grid; gap:5px; }
 .cashkey-row.two { grid-template-columns:1fr 1fr; }
 .cashkey-row.one { grid-template-columns:1fr; }
-.cashkey-btn { padding:13px 4px; border-radius:var(--rs); background:var(--s1); border:1px solid var(--border); font-family:'Noto Sans JP',sans-serif; font-size:25px; font-weight:500; color:var(--text); cursor:pointer; text-align:center; transition:all .1s; min-height:calc(1em * 1.2 + 26px); }
+.cashkey-btn { padding:10px 4px; border-radius:var(--rs); background:var(--s1); border:1px solid var(--border); font-family:var(--font-mono); font-size:25px; font-weight:500; color:var(--text); cursor:pointer; text-align:center; transition:all .1s; min-height:calc(1em * 1.2 + 26px); }
 .cashkey-btn:active { background:var(--s3); transform:scale(.95); }
 
 /* お釣りエリア（常時確保） */
@@ -121,7 +123,7 @@ textarea.finput { resize:vertical; min-height:70px; }
   display:flex; flex-direction:column; align-items:center; justify-content:center;
 }
 .cr-label { font-size:11px; color:var(--text3); margin-bottom:1px; font-weight:800; }
-.cr-amount { font-family:'Noto Sans JP',sans-serif; font-size:25px; font-weight:800; color:var(--green); }
+.cr-amount { font-family:var(--font-mono); font-size:25px; font-weight:800; color:var(--green); }
 .cr-amount.negative { color:var(--red); }
 .cr-placeholder { font-size:11px; color:var(--text3); }
 
@@ -131,13 +133,14 @@ textarea.finput { resize:vertical; min-height:70px; }
 .product-card.dragging { opacity:.35; }
 .drag-handle { flex-shrink:0; width:28px; height:34px; display:flex; align-items:center; justify-content:center; cursor:grab; color:var(--text3); touch-action:none; border-radius:6px; }
 .drag-handle:active { cursor:grabbing; background:var(--s2); }
+.icon-btn-del.locked { color:var(--text3); cursor:default; opacity:.4; }
 .drag-handle svg { pointer-events:none; }
 .pc-thumb { width:44px; height:44px; border-radius:8px; overflow:hidden; background:var(--s2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .pc-thumb img { width:100%; height:100%; object-fit:cover; }
 .pc-thumb .pc-emoji { font-size:24px; line-height:1; }
 .pc-info { flex:1; min-width:0; }
 .pc-name { font-size:14px; font-weight:800; }
-.pc-price { font-family:'Noto Sans JP',sans-serif; font-size:13px; color:var(--accent); margin-top:2px; }
+.pc-price { font-family:var(--font-mono); font-size:13px; color:var(--accent); margin-top:2px; }
 .pc-actions { display:flex; gap:6px; }
 .icon-btn { width:34px; height:34px; border-radius:var(--rs); display:flex; align-items:center; justify-content:center; border:none; cursor:pointer; transition:all .12s; }
 .icon-btn:active { transform:scale(.92); }
@@ -162,7 +165,7 @@ textarea.finput { resize:vertical; min-height:70px; }
 
 /* モーダル */
 .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.45); display:flex; align-items:flex-end; justify-content:center; z-index:200; opacity:0; pointer-events:none; transition:opacity .2s; }
-.modal-overlay.open { opacity:1; pointer-events:all; }
+.modal-overlay.open { opacity:1; pointer-events:auto; }
 .modal { background:var(--s1); border-radius:20px 20px 0 0; border-top:1px solid var(--border); width:100%; max-width:500px; padding:20px 20px calc(20px + env(safe-area-inset-bottom)); transform:translateY(30px); transition:transform .25s; max-height:92dvh; overflow-y:auto; }
 .modal-overlay.open .modal { transform:translateY(0); }
 .modal-title { font-size:18px; font-weight:900; margin-bottom:18px; }
@@ -172,7 +175,7 @@ textarea.finput { resize:vertical; min-height:70px; }
 .ts-title { font-size:11px; font-weight:800; color:var(--accent); letter-spacing:1px; margin-bottom:10px; }
 .ts-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .ts-item .ts-label { font-size:10px; color:var(--text2); margin-bottom:3px; }
-.ts-item .ts-value { font-family:'Noto Sans JP',sans-serif; font-size:20px; font-weight:800; color:var(--accent); }
+.ts-item .ts-value { font-family:var(--font-mono); font-size:20px; font-weight:800; color:var(--accent); }
 .ts-item .ts-unit { font-size:11px; color:var(--text2); }
 .history-item { background:var(--s1); border:1px solid var(--border); border-radius:var(--r); padding:14px; margin-bottom:8px; cursor:pointer; transition:border-color .15s; }
 .history-item:active { border-color:var(--accent); }
@@ -180,20 +183,20 @@ textarea.finput { resize:vertical; min-height:70px; }
 .hi-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
 .hi-left { display:flex; flex-direction:column; gap:3px; }
 .hi-time { font-size:12px; color:var(--text2); }
-.hi-amount { font-family:'Noto Sans JP',sans-serif; font-size:18px; font-weight:800; color:var(--accent); }
+.hi-amount { font-family:var(--font-mono); font-size:18px; font-weight:800; color:var(--accent); }
 .hi-archived-label { font-size:10px; font-weight:800; color:var(--red); letter-spacing:.5px; }
 .hi-items { display:flex; flex-wrap:wrap; gap:5px; }
 .hi-tag { background:var(--s2); border:1px solid var(--border); border-radius:6px; padding:3px 8px; font-size:11px; color:var(--text2); }
 .date-sep { font-size:11px; font-weight:800; color:var(--text3); letter-spacing:1px; padding:14px 0 8px; }
 .hdi-row { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px; }
 .hdi-row:last-child { border-bottom:none; }
-.hdi-val { font-family:'Noto Sans JP',sans-serif; color:var(--text2); }
+.hdi-val { font-family:var(--font-mono); color:var(--text2); }
 
 /* CSV前アーカイブ処理 */
 .archive-item-row { background:var(--s2); border:1px solid var(--border); border-radius:var(--rs); padding:12px 14px; margin-bottom:8px; }
 .air-header { display:flex; justify-content:space-between; margin-bottom:4px; }
 .air-time { font-size:12px; color:var(--text2); }
-.air-amount { font-family:'Noto Sans JP',sans-serif; font-size:15px; font-weight:800; color:var(--accent); }
+.air-amount { font-family:var(--font-mono); font-size:15px; font-weight:800; color:var(--accent); }
 .air-memo { font-size:11px; color:var(--text3); font-style:italic; margin-bottom:8px; }
 .air-btns { display:flex; gap:6px; }
 
@@ -231,7 +234,7 @@ textarea.finput { resize:vertical; min-height:70px; }
 <div class="page active" id="p-register">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
     <h2 style="margin-bottom:0">レジ</h2>
-    <span id="cart-timer" style="font-size:11px;color:var(--text3);font-family:'Noto Sans JP',sans-serif;letter-spacing:.5px">—:——</span>
+    <span id="cart-timer" style="font-size:11px;color:var(--text3);font-family:var(--font-mono);letter-spacing:.5px">—:——</span>
   </div>
   <div class="product-grid" id="product-grid"></div>
   <div class="cart-wrap">
@@ -246,7 +249,7 @@ textarea.finput { resize:vertical; min-height:70px; }
     <div class="cart-list" id="cart-list"><div class="cart-empty">商品を追加してください</div></div>
   </div>
   <div class="total-wrap">
-    <div class="trow grand" style="border-top:none;margin-top:0;padding-top:4px">
+    <div class="trow grand" style="border-top:none;margin-top:0;padding-top:0">
       <span class="tlbl" id="cart-total-label">合計</span>
       <span class="tval" id="total">¥0</span>
     </div>
@@ -302,13 +305,11 @@ textarea.finput { resize:vertical; min-height:70px; }
   <h2>売上履歴</h2>
   <p class="sub">会計ごとに自動保存</p>
   <div id="today-summary-wrap"></div>
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-    <button class="btn btn-ghost" id="csv-export-btn" onclick="startCsvExport()" style="flex:1">
+  <button class="btn btn-ghost" id="csv-export-btn" onclick="startCsvExport()" style="margin-bottom:6px">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       CSVで売上出力
     </button>
-    <div id="csv-exported-badge" style="display:none;flex-shrink:0;padding:6px 10px;border-radius:99px;background:rgba(46,107,74,.12);border:1px solid rgba(46,107,74,.3);font-size:11px;font-weight:800;color:var(--green)">✓ 出力済み</div>
-  </div>
+  <div id="csv-exported-badge" style="display:none;font-size:11px;color:var(--text3);margin-bottom:12px;padding-left:2px"></div>
   <div id="history-list-wrap"></div>
 </div>
 
@@ -338,9 +339,15 @@ textarea.finput { resize:vertical; min-height:70px; }
   </div>
   <div class="card">
     <div class="section-label">データ管理</div>
+    <div style="font-size:11px;color:var(--text3);line-height:1.7;margin-bottom:12px">商品リスト・売上履歴・ストア設定（店名・メッセージ・ロゴ含む）をまとめてバックアップします。</div>
     <button class="btn btn-ghost" onclick="exportJson()" style="margin-bottom:8px">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       全データをバックアップ（JSON）
+    </button>
+    <input type="file" id="import-json-input" accept="application/json,.json" style="display:none" onchange="importJson(this)">
+    <button class="btn btn-ghost" onclick="document.getElementById('import-json-input').click()" style="margin-bottom:8px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3" transform="rotate(180 12 9)"/></svg>
+      バックアップから復元（JSON）
     </button>
     <button class="btn btn-red btn-sm" onclick="confirmClearHistory()" style="width:auto">履歴をすべて削除</button>
   </div>
@@ -360,7 +367,7 @@ textarea.finput { resize:vertical; min-height:70px; }
   </div>
   <div class="card">
     <div class="section-label">アプリ情報</div>
-    <div style="font-size:13px;color:var(--text2);line-height:1.8">バージョン: 3.2.0</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.8">バージョン: 3.4.7</div>
   </div>
 </div>
 </div><!-- /pages -->
@@ -456,7 +463,7 @@ textarea.finput { resize:vertical; min-height:70px; }
     </div>
     <div id="co-change-display" style="text-align:center;margin-bottom:16px;display:none">
       <div style="font-size:12px;color:var(--text2)">お釣り</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:32px;font-weight:800" id="co-change"></div>
+      <div style="font-family:var(--font-mono);font-size:32px;font-weight:800" id="co-change"></div>
     </div>
     <button class="btn btn-primary" onclick="showReceiptModal()" style="margin-bottom:8px">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -491,6 +498,27 @@ textarea.finput { resize:vertical; min-height:70px; }
     </div>
     <div id="dl-complete-guide" style="background:var(--s2);border:1px solid var(--border);border-radius:var(--rs);padding:14px;margin-bottom:16px;font-size:13px;line-height:1.8;color:var(--text2)"></div>
     <button class="btn btn-ghost" onclick="closeDlCompleteModal()">閉じる</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="confirm-modal" style="z-index:300">
+  <div class="modal" style="max-width:320px">
+    <div class="modal-title" id="confirm-modal-title" style="font-size:16px;margin-bottom:10px"></div>
+    <div id="confirm-modal-warning" style="display:none;margin-bottom:12px;padding:10px 12px;background:rgba(224,85,85,.08);border:1px solid rgba(224,85,85,.25);border-radius:var(--rs);font-size:12px;color:var(--red);line-height:1.8;white-space:pre-line"></div>
+    <div id="confirm-modal-body" style="font-size:13px;color:var(--text2);margin-bottom:18px;line-height:1.7"></div>
+    <button class="btn btn-primary" id="confirm-modal-ok" style="margin-bottom:8px"></button>
+    <button class="btn btn-ghost" onclick="closeConfirmModal()">キャンセル</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="db-error-modal">
+  <div class="modal">
+    <div style="text-align:center;margin-bottom:16px">
+      <div style="font-size:32px;margin-bottom:6px">⚠️</div>
+      <div class="modal-title" id="db-error-title" style="margin-bottom:4px">データ保存エラー</div>
+    </div>
+    <div id="db-error-body" style="background:var(--s2);border:1px solid var(--border);border-radius:var(--rs);padding:14px;margin-bottom:16px;font-size:13px;line-height:1.9;color:var(--text2)"></div>
+    <button class="btn btn-ghost" onclick="closeDbErrorModal()">閉じる</button>
   </div>
 </div>
 
@@ -658,6 +686,53 @@ function showDlCompleteModal(type, filename){
 }
 function closeDlCompleteModal(){document.getElementById('dl-complete-modal').classList.remove('open');}
 
+// 汎用確認モーダル
+let _confirmCallback=null;
+function showConfirmModal(title, body, okLabel, callback, okStyle='btn-primary', warning=''){
+  document.getElementById('confirm-modal-title').textContent=title;
+  const warnEl=document.getElementById('confirm-modal-warning');
+  if(warning){
+    warnEl.innerText=warning;
+    warnEl.style.display='';
+  }else{
+    warnEl.style.display='none';
+  }
+  document.getElementById('confirm-modal-body').innerText=body;
+  const okBtn=document.getElementById('confirm-modal-ok');
+  okBtn.textContent=okLabel;
+  okBtn.className='btn '+okStyle+' ';
+  okBtn.style.marginBottom='8px';
+  _confirmCallback=callback;
+  okBtn.onclick=()=>{const cb=_confirmCallback;closeConfirmModal();if(cb)cb();};
+  document.getElementById('confirm-modal').classList.add('open');
+}
+function closeConfirmModal(){
+  document.getElementById('confirm-modal').classList.remove('open');
+  document.getElementById('confirm-modal-warning').style.display='none';
+  _confirmCallback=null;
+}
+
+function showDbErrorModal(type){
+  const quota=type==='quota';
+  document.getElementById('db-error-title').textContent=quota?'ストレージ容量が不足しています':'データの保存に失敗しました';
+  document.getElementById('db-error-body').innerHTML=quota
+    ?`<strong>このアプリ内で解決できます：</strong><br>
+      <br>
+      1. <strong>売上履歴をCSV出力</strong>してから「履歴をすべて削除」する<br>
+      2. 商品の<strong>画像を絵文字に変更</strong>して画像データを減らす<br>
+      3. 上記の後も改善しない場合は<strong>全データをJSONバックアップ</strong>してから「履歴をすべて削除」する<br>
+      <br>
+      <span style="font-size:11px;color:var(--text3)">※ 端末の他のアプリやファイルには影響しません</span>`
+    :`<strong>以下をお試しください：</strong><br>
+      <br>
+      1. このページを<strong>リロード</strong>して再操作する<br>
+      2. 改善しない場合は<strong>全データをJSONバックアップ</strong>してから、ブラウザの「このサイトのデータを削除」を実行する<br>
+      <br>
+      <span style="font-size:11px;color:var(--text3)">※ 「このサイトのデータ」のみ削除されます。端末の写真・連絡先などには影響しません</span>`;
+  document.getElementById('db-error-modal').classList.add('open');
+}
+function closeDbErrorModal(){document.getElementById('db-error-modal').classList.remove('open');}
+
 // ===========================
 // カテゴリカラーパレット
 // ===========================
@@ -700,14 +775,14 @@ function initDB() {
 }
 const dbGet    = (s,k) => new Promise((r,j)=>{const q=db.transaction(s).objectStore(s).get(k);q.onsuccess=()=>r(q.result);q.onerror=()=>j(q.error);});
 const dbGetAll = (s)   => new Promise((r,j)=>{const q=db.transaction(s).objectStore(s).getAll();q.onsuccess=()=>r(q.result);q.onerror=()=>j(q.error);});
-const dbPut    = (s,o) => new Promise((r,j)=>{const q=db.transaction(s,'readwrite').objectStore(s).put(o);q.onsuccess=()=>r(q.result);q.onerror=()=>j(q.error);});
-const dbDelete = (s,k) => new Promise((r,j)=>{const q=db.transaction(s,'readwrite').objectStore(s).delete(k);q.onsuccess=()=>r();q.onerror=()=>j(q.error);});
-const dbClear  = (s)   => new Promise((r,j)=>{const q=db.transaction(s,'readwrite').objectStore(s).clear();q.onsuccess=()=>r();q.onerror=()=>j(q.error);});
+const _dbPut   = (s,o) => new Promise((r,j)=>{const q=db.transaction(s,'readwrite').objectStore(s).put(o);q.onsuccess=()=>r(q.result);q.onerror=()=>j(q.error);});
+const _dbDelete = (s,k) => new Promise((r,j)=>{const q=db.transaction(s,'readwrite').objectStore(s).delete(k);q.onsuccess=()=>r();q.onerror=()=>j(q.error);});
+const _dbClear  = (s)   => new Promise((r,j)=>{const q=db.transaction(s,'readwrite').objectStore(s).clear();q.onsuccess=()=>r();q.onerror=()=>j(q.error);});
 
 // ===========================
 // 状態
 // ===========================
-let cart=[],products=[],lastSale=null,receivedAmount=0,pmIsNew=false;
+let cart=[],products=[],lastSale=null,lastReceiptSale=null,receivedAmount=0,pmIsNew=false;
 let csvArchiveProcessed={};
 let storeLogo=null; // base64
 
@@ -721,11 +796,6 @@ async function init() {
   await loadSettings();
   renderCart();
 }
-function updateDateDisplay(){
-  const n=new Date();
-  document.getElementById('register-date').textContent=`${n.getFullYear()}年${n.getMonth()+1}月${n.getDate()}日（${'日月火水木金土'[n.getDay()]}）`;
-}
-
 // ===========================
 // 設定
 // ===========================
@@ -735,6 +805,23 @@ async function loadSettings(){
   }
   const lg=await dbGet('settings','storeLogo');
   if(lg&&lg.value){ storeLogo=lg.value; renderLogoPreview(storeLogo); }
+}
+async function dbPut(s,o){
+  try{return await _dbPut(s,o);}
+  catch(e){
+    console.error('dbPut error:',e);
+    const isQuota=e&&(e.name==='QuotaExceededError'||e.code===22);
+    showDbErrorModal(isQuota?'quota':'general');
+    throw e;
+  }
+}
+async function dbDelete(s,k){
+  try{return await _dbDelete(s,k);}
+  catch(e){console.error('dbDelete error:',e);showDbErrorModal('general');throw e;}
+}
+async function dbClear(s){
+  try{return await _dbClear(s);}
+  catch(e){console.error('dbClear error:',e);showDbErrorModal('general');throw e;}
 }
 async function saveSetting(key,value){await dbPut('settings',{key,value});}
 
@@ -779,7 +866,7 @@ async function loadProducts(){
   products=raw.slice().sort((a,b)=>a.sortOrder-b.sortOrder);
   products.forEach(p=>{if(p.category)getCatColor(p.category);});
   renderProductGrid();
-  renderProductList();
+  await renderProductList();
 }
 
 function renderProductGrid(){
@@ -804,7 +891,7 @@ function renderProductGrid(){
   }).join('');
 }
 
-function renderProductList(){
+async function renderProductList(){
   const el=document.getElementById('product-list-wrap');
   if(!products.length){el.innerHTML='<div class="card" style="text-align:center;color:var(--text3);font-size:13px">まだ商品がありません</div>';return;}
   el.innerHTML=products.map(p=>{
@@ -812,6 +899,9 @@ function renderProductList(){
     const catColor=getCatColor(p.category);
     const catLabel=catColor&&p.category
       ?`<span class="cat-label" style="background:${catColor.bg};color:${catColor.text};margin-left:6px">${esc(p.category)}</span>`:'';
+    const delBtn=`<button class="icon-btn icon-btn-del" onclick="deleteProduct(${p.id})" title="削除">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </button>`;
     return `<div class="product-card" data-id="${p.id}">
       <div class="drag-handle" data-handle>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -827,9 +917,7 @@ function renderProductList(){
         <button class="icon-btn icon-btn-edit" onclick="openProductModal(${p.id})">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
         </button>
-        <button class="icon-btn icon-btn-del" onclick="deleteProduct(${p.id})">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-        </button>
+        ${delBtn}
       </div>
     </div>`;
   }).join('');
@@ -839,7 +927,11 @@ function renderProductList(){
 // ===========================
 // ドラッグ＆ドロップ 並び替え
 // ===========================
+let _dragSortAbort=null;
 function initDragSort(){
+  if(_dragSortAbort)_dragSortAbort.abort();
+  _dragSortAbort=new AbortController();
+  const sig={signal:_dragSortAbort.signal};
   const list=document.getElementById('product-list-wrap');
   let dragSrc=null, ghostEl=null, ghostOffsetY=0, lastOver=null;
 
@@ -920,20 +1012,19 @@ function initDragSort(){
     if(!handle)return;
     const card=getCard(handle);
     if(!card)return;
-    e.preventDefault();
     startDrag(card,e.touches[0].clientY);
-  },{passive:false});
+  },{passive:true,...sig});
 
   list.addEventListener('touchmove',e=>{
     if(!dragSrc)return;
     e.preventDefault();
     moveDrag(e.touches[0].clientY);
-  },{passive:false});
+  },{passive:false,...sig});
 
   list.addEventListener('touchend',e=>{
     if(!dragSrc)return;
     endDrag();
-  });
+  },sig);
 
   // マウスイベント（PC確認用）
   list.addEventListener('mousedown',e=>{
@@ -947,7 +1038,7 @@ function initDragSort(){
     const onUp=()=>{endDrag();document.removeEventListener('mousemove',onMove);document.removeEventListener('mouseup',onUp);};
     document.addEventListener('mousemove',onMove);
     document.addEventListener('mouseup',onUp);
-  });
+  },sig);
 }
 
 function toggleNew(){
@@ -958,6 +1049,7 @@ function toggleNew(){
 }
 
 function openProductModal(id=null){
+  if(id!==null)id=parseInt(id);
   document.getElementById('edit-product-id').value=id||'';
   ['pm-name','pm-price','pm-category','pm-emoji'].forEach(i=>document.getElementById(i).value='');
   document.getElementById('pm-image-file').value='';
@@ -1005,9 +1097,31 @@ async function saveProduct(){
   showToast(idVal?'商品を更新しました':'商品を追加しました','success');
 }
 async function deleteProduct(id){
-  if(!confirm('この商品を削除しますか？'))return;
-  await dbDelete('products',id);cart=cart.filter(c=>c.id!==id);
-  await loadProducts();renderCart();showToast('商品を削除しました');
+  id=parseInt(id);
+  const product=products.find(p=>p.id===id);
+  if(!product)return;
+  const today=formatDate(new Date());
+  const allSales=await dbGetAll('sales');
+  // 本日この商品を含む会計件数
+  const todayCount=allSales.filter(s=>!s.archived&&s.dateStr===today&&s.items.some(i=>i.id===id)).length;
+  // 過去（今日以前）にも会計があるか
+  const pastCount=allSales.filter(s=>!s.archived&&s.dateStr!==today&&s.items.some(i=>i.id===id)).length;
+
+  const totalSold=todayCount+pastCount;
+  const warning=totalSold>0?`⚠️ この商品はこれまでに ${totalSold} 件会計されています。`:'';
+
+  showConfirmModal(
+    `「${product.name}」を削除`,
+    '削除後は復元できません。再び取り扱う場合は再登録が必要です。',
+    '削除する',
+    async()=>{
+      await dbDelete('products',id);
+      cart=cart.filter(c=>c.id!==id);
+      await loadProducts();renderCart();showToast('商品を削除しました');
+    },
+    'btn-red',
+    warning
+  );
 }
 
 // ===========================
@@ -1084,6 +1198,7 @@ function updateCashkeyDisplay(){
 // カート
 // ===========================
 function addToCart(id){
+  id=parseInt(id);
   const p=products.find(x=>x.id===id);if(!p)return;
   const ex=cart.find(c=>c.id===id);
   if(ex)ex.qty++;else cart.push({id:p.id,name:p.name,price:p.price,qty:1});
@@ -1106,7 +1221,7 @@ function toggleCartAccordion(){
   if(cartAccordionOpen){list.classList.remove('collapsed');if(chev)chev.classList.add('open');}
   else{list.classList.add('collapsed');if(chev)chev.classList.remove('open');}
 }
-function clearCart(){if(!cart.length)return;cart=[];receivedAmount=0;stopCartTimer();renderCart();}
+function clearCart(){if(!cart.length)return;cart=[];receivedAmount=0;stopCartTimer();renderCart();renderProductGrid();}
 function startCartTimer(){if(cartTimerInterval)return;cartTimerStart=Date.now();cartTimerInterval=setInterval(()=>{const s=Math.floor((Date.now()-cartTimerStart)/1000);const m=Math.floor(s/60);const ss=s%60;document.getElementById('cart-timer').textContent=`${m}:${String(ss).padStart(2,'0')}`;},1000);}
 function stopCartTimer(){clearInterval(cartTimerInterval);cartTimerInterval=null;cartTimerStart=null;document.getElementById('cart-timer').textContent='—:——';}
 function renderCart(){
@@ -1134,7 +1249,7 @@ function renderCart(){
   }
   list.innerHTML=cart.map((c,i)=>`<div class="cart-item" onclick="changeQty(${i},1)" oncontextmenu="event.preventDefault();changeQty(${i},-1)">
     <div class="ci-name">${esc(c.name)}</div>
-    <div style="font-size:11px;color:var(--text3);font-family:'Noto Sans JP',sans-serif;min-width:28px;text-align:center">×${c.qty}</div>
+    <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono);min-width:28px;text-align:center">×${c.qty}</div>
     <div class="ci-price">${fmt(c.price*c.qty)}</div>
   </div>`).join('');
   renderProductGrid();
@@ -1158,7 +1273,7 @@ async function checkout(){
   if(change!==null){document.getElementById('co-change').textContent=fmt(Math.abs(change));document.getElementById('co-change').style.color=change<0?'var(--red)':'var(--green)';cdEl.style.display='block';}
   else cdEl.style.display='none';
   document.getElementById('checkout-modal').classList.add('open');
-  cart=[];receivedAmount=0;stopCartTimer();renderCart();
+  cart=[];receivedAmount=0;stopCartTimer();renderCart();renderProductGrid();
   await renderHistory();
 }
 function closeCheckoutModal(){document.getElementById('checkout-modal').classList.remove('open');}
@@ -1166,8 +1281,9 @@ function closeCheckoutModal(){document.getElementById('checkout-modal').classLis
 // ===========================
 // 領収書 Canvas生成（白黒・サーマル向け）
 // ===========================
-async function showReceiptModal(){
-  if(!lastSale)return;
+async function showReceiptModal(sale){
+  const target=sale||lastSale;
+  if(!target)return;
   const sn=await dbGet('settings','storeName');
   const se=await dbGet('settings','storeEmail');
   const sm=await dbGet('settings','storeMessage');
@@ -1175,8 +1291,12 @@ async function showReceiptModal(){
   const email=se?.value||'';
   const msg=sm?.value||'ありがとうございました';
 
-  await drawReceiptCanvas(lastSale,{name,email,msg,logo:storeLogo});
+  await drawReceiptCanvas(target,{name,email,msg,logo:storeLogo});
+  // 履歴から開いた場合はhistory-modalを閉じる
+  if(sale)document.getElementById('history-modal').classList.remove('open');
   document.getElementById('receipt-modal').classList.add('open');
+  // downloadReceiptPng用にtargetを保持
+  lastReceiptSale=target;
 }
 
 async function drawReceiptCanvas(sale,{name,email,msg,logo}){
@@ -1188,7 +1308,8 @@ async function drawReceiptCanvas(sale,{name,email,msg,logo}){
   await document.fonts.ready;
 
   // --- 行リスト生成（高さ計算用）---
-  const FONT='Noto Sans JP, sans-serif';
+  const FONT='Noto Sans JP, system-ui, sans-serif';
+  const MONO='DM Mono, Noto Sans JP, monospace';
   const LINE=22;
   const PAD=20;
 
@@ -1326,10 +1447,11 @@ async function drawReceiptCanvas(sale,{name,email,msg,logo}){
 }
 
 function downloadReceiptPng(){
+  const sale=lastReceiptSale||lastSale;
   const canvas=document.getElementById('receipt-canvas');
   const a=document.createElement('a');
   a.href=canvas.toDataURL('image/png');
-  const recFilename=`receipt-${lastSale?.dateStr?.replace(/\//g,'')}-${lastSale?.timeStr?.replace(/:/g,'')}.png`;
+  const recFilename=`receipt-${sale?.dateStr?.replace(/\//g,'')}-${sale?.timeStr?.replace(/:/g,'')}.png`;
   a.download=recFilename;
   a.click();
   showDlCompleteModal('receipt', recFilename);
@@ -1340,6 +1462,7 @@ function closeReceiptModal(){document.getElementById('receipt-modal').classList.
 // アーカイブ
 // ===========================
 function openArchiveModal(id){
+  id=parseInt(id);
   document.getElementById('archive-target-id').value=id;
   document.getElementById('archive-memo').value='';
   document.getElementById('archive-modal').classList.add('open');
@@ -1368,7 +1491,13 @@ async function renderHistory(){
   // CSV出力済みバッジ復元
   const lastCsv=await dbGet('settings','lastCsvExport');
   const badge=document.getElementById('csv-exported-badge');
-  if(badge)badge.style.display=lastCsv&&lastCsv.value?'':'none';
+  if(badge){
+    if(lastCsv&&lastCsv.value){
+      const d=new Date(lastCsv.value);
+      badge.textContent='前回出力: '+formatDate(d)+' '+formatTime(d);
+      badge.style.display='';
+    }else{badge.style.display='none';}
+  }
   // 商品別販売数（本日のみ・非アーカイブ）
   const todayItemMap={};
   todaySales.forEach(s=>s.items.forEach(it=>{
@@ -1380,12 +1509,12 @@ async function renderHistory(){
   Object.entries(todayItemMap).forEach(([id,v])=>{if(!products.find(p=>p.id===parseInt(id)))sortedTodayItems.push({id:parseInt(id),...v});});
   const itemBreakdownHtml=sortedTodayItems.length?`
     <div style="margin-top:10px;border-top:1px solid rgba(0,0,0,.08);padding-top:8px">
-      <div style="font-size:10px;font-weight:800;color:var(--accent);letter-spacing:1px;margin-bottom:6px">商品別 販売数</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><div style="font-size:10px;font-weight:800;color:var(--accent);letter-spacing:1px">商品別 販売数</div><button class="btn btn-ghost btn-sm" style="padding:2px 8px;font-size:10px;height:auto" onclick="copySummary()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:3px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>コピー</button></div>
       ${sortedTodayItems.map(it=>`
         <div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:12px">
           <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:8px;color:var(--text2)">${esc(it.name)}</span>
-          <span style="font-family:'Noto Sans JP',sans-serif;color:var(--text3);margin-right:10px">${it.qty}個</span>
-          <span style="font-family:'Noto Sans JP',sans-serif;color:var(--accent)">${fmt(it.total)}</span>
+          <span style="font-family:var(--font-mono);color:var(--text3);margin-right:10px">${it.qty}個</span>
+          <span style="font-family:var(--font-mono);color:var(--accent)">${fmt(it.total)}</span>
         </div>`).join('')}
     </div>`:'';
   document.getElementById('today-summary-wrap').innerHTML=`
@@ -1419,25 +1548,60 @@ async function renderHistory(){
 }
 
 async function showHistoryDetail(id){
+  id=parseInt(id);
   const sale=await dbGet('sales',id);if(!sale)return;
-  const archSec=!sale.archived
-    ?`<button class="btn btn-red btn-sm" style="width:auto;margin-top:14px" onclick="openArchiveModal(${id})">この会計をアーカイブ</button>`
-    :`<div style="margin-top:14px;padding:10px 12px;background:rgba(224,85,85,.08);border:1px solid rgba(224,85,85,.2);border-radius:var(--rs)">
+
+  // アーカイブ済みバナー（コンテンツ内）
+  const archBanner=sale.archived
+    ?`<div style="margin-bottom:12px;padding:10px 12px;background:rgba(224,85,85,.08);border:1px solid rgba(224,85,85,.2);border-radius:var(--rs)">
         <div style="font-size:11px;font-weight:800;color:var(--red);margin-bottom:4px">ARCHIVED</div>
         <div style="font-size:13px;color:var(--text2)">${sale.archiveMemo?esc(sale.archiveMemo):'メモなし'}</div>
-      </div>`;
+      </div>`:''
+  // アーカイブボタン（タイトル横）
+  const archBtn=!sale.archived
+    ?`<button class="btn btn-ghost btn-sm" style="width:auto;color:var(--red);flex-shrink:0" onclick="openArchiveModal(${id})">アーカイブ</button>`:''
   document.getElementById('history-detail-content').innerHTML=`
-    <div class="modal-title">${sale.dateStr} ${sale.timeStr}</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:18px">
+      <div style="font-size:18px;font-weight:900;line-height:1.3">${sale.dateStr}<br><span style="font-size:14px;color:var(--text2);font-weight:500">${sale.timeStr}</span></div>
+      ${archBtn}
+    </div>
+    ${archBanner}
     <div>
       ${sale.items.map(i=>`<div class="hdi-row"><span>${esc(i.name)}</span><span class="hdi-val">${fmt(i.price)} × ${i.qty} = ${fmt(i.price*i.qty)}</span></div>`).join('')}
-      <div class="hdi-row" style="font-weight:800"><span>合計</span><span style="color:var(--accent);font-family:'Noto Sans JP',sans-serif;font-size:18px">${fmt(sale.total)}</span></div>
+      <div class="hdi-row" style="font-weight:800"><span>合計</span><span style="color:var(--accent);font-family:var(--font-mono);font-size:18px">${fmt(sale.total)}</span></div>
       ${sale.received?`<div class="hdi-row"><span style="color:var(--text2)">お預かり</span><span class="hdi-val">${fmt(sale.received)}</span></div>`:''}
       ${sale.change!==null?`<div class="hdi-row"><span style="color:var(--text2)">お釣り</span><span class="hdi-val" style="color:var(--green)">${fmt(Math.abs(sale.change))}</span></div>`:''}
     </div>
-    ${archSec}<br>`;
+    ${!sale.archived?`<button class="btn btn-ghost" style="margin-top:12px" onclick="showHistoryReceipt(${id})">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      領収書を表示
+    </button>`:''}
+    ${sale.archived?`<button class="btn btn-ghost" style="margin-top:12px" onclick="unarchive(${id})">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+      アーカイブを取り消す
+    </button>`:''}
+    <br>`;
   document.getElementById('history-modal').classList.add('open');
 }
 function closeHistoryModal(){document.getElementById('history-modal').classList.remove('open');}
+async function unarchive(id){
+  id=parseInt(id);
+  showConfirmModal('アーカイブを取り消す','メモも削除されます。よろしいですか？','取り消す',async()=>{
+    const sale=await dbGet('sales',id);
+    if(!sale){showToast('会計データが見つかりません','error');return;}
+    sale.archived=false;sale.archiveMemo=null;
+    await _dbPut('sales',sale);
+    await renderHistory();
+    await showHistoryDetail(id);
+    showToast('アーカイブを取り消しました','success');
+  });
+}
+async function showHistoryReceipt(id){
+  id=parseInt(id);
+  const sale=await dbGet('sales',id);
+  if(!sale)return;
+  await showReceiptModal(sale);
+}
 
 // ===========================
 // CSV出力
@@ -1463,6 +1627,7 @@ function renderCsvArchiveList(archived){
     </div>`).join('');
 }
 function setArchiveAction(id,action){
+  id=parseInt(id);
   csvArchiveProcessed[id]=action;
   ['delete','merge'].forEach(a=>{
     const b=document.getElementById(a==='delete'?`air-del-${id}`:`air-mrg-${id}`);
@@ -1489,16 +1654,32 @@ async function proceedCsvExport(){
   }
   const final=(await dbGetAll('sales')).filter(s=>!s.archived);
   final.sort((a,b)=>new Date(a.date)-new Date(b.date));
-  let csv='\uFEFF日付,時刻,商品名,単価,数量,小計,合計\n';
-  final.forEach(s=>{s.items.forEach((item,i)=>{csv+=`${s.dateStr},${s.timeStr},"${item.name}",${item.price},${item.qty},${item.price*item.qty},${i===0?s.total:''}\n`;});});
+  // 会計番号：日付ごとに1始まりの連番
+  const seqMap={};
+  final.forEach(s=>{
+    if(!seqMap[s.dateStr])seqMap[s.dateStr]=0;
+    seqMap[s.dateStr]++;
+    s._seq=seqMap[s.dateStr];
+  });
+  let csv='\uFEFF会計番号,日付,時刻,商品名,単価,数量,小計,合計\n';
+  final.forEach(s=>{
+    s.items.forEach((item,i)=>{
+      const seq=i===0?s._seq:'';
+      const total=i===0?s.total:'';
+      csv+=`${seq},${s.dateStr},${s.timeStr},"${item.name}",${item.price},${item.qty},${item.price*item.qty},${total}\n`;
+    });
+  });
   const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+  const csvUrl=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
+  a.href=csvUrl;
   a.download=`sales-${formatDate(new Date()).replace(/\//g,'-')}.csv`;
   a.click();
+  setTimeout(()=>URL.revokeObjectURL(csvUrl),1000);
   const csvFilename=`sales-${formatDate(new Date()).replace(/\//g,'-')}.csv`;
   closeCsvArchiveModal();await renderHistory();
-  const badge=document.getElementById('csv-exported-badge');if(badge)badge.style.display='';
-  await saveSetting('lastCsvExport',new Date().toISOString());
+  const now=new Date();await saveSetting('lastCsvExport',now.toISOString());
+  const badge=document.getElementById('csv-exported-badge');
+  if(badge){badge.textContent='前回出力: '+formatDate(now)+' '+formatTime(now);badge.style.display='';}
   showDlCompleteModal('csv', csvFilename);
 }
 function closeCsvArchiveModal(){document.getElementById('csv-archive-modal').classList.remove('open');}
@@ -1509,13 +1690,37 @@ function closeCsvArchiveModal(){document.getElementById('csv-archive-modal').cla
 async function exportJson(){
   const data=JSON.stringify({products:await dbGetAll('products'),sales:await dbGetAll('sales'),settings:await dbGetAll('settings')},null,2);
   const jsonFilename=`register-backup-${formatDate(new Date()).replace(/\//g,'-')}.json`;
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+  const jsonUrl=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+  const a=document.createElement('a');a.href=jsonUrl;
   a.download=jsonFilename;a.click();
+  setTimeout(()=>URL.revokeObjectURL(jsonUrl),1000);
   showDlCompleteModal('json', jsonFilename);
 }
+async function importJson(input){
+  const file=input.files[0];if(!file)return;
+  input.value=''; // 同じファイルを再選択できるようリセット
+  const text=await file.text();
+  let data;
+  try{data=JSON.parse(text);}catch(e){showToast('JSONファイルの読み込みに失敗しました','error');return;}
+  if(!data.products||!data.sales){showToast('バックアップファイルの形式が正しくありません','error');return;}
+  showConfirmModal('バックアップから復元','現在のデータを上書きします。この操作は取り消せません。続けますか？','復元する',async()=>{
+    await dbClear('products');
+    for(const p of data.products)await dbPut('products',p);
+    await dbClear('sales');
+    for(const s of data.sales)await dbPut('sales',s);
+    if(data.settings){
+      await dbClear('settings');
+      for(const s of data.settings)await dbPut('settings',s);
+    }
+    await loadProducts();await loadSettings();await renderHistory();
+    showToast('バックアップから復元しました','success');
+  });
+
+}
 async function confirmClearHistory(){
-  if(!confirm('売上履歴をすべて削除しますか？この操作は取り消せません。'))return;
-  await dbClear('sales');await renderHistory();showToast('履歴を削除しました');
+  showConfirmModal('履歴をすべて削除','売上履歴・アーカイブ済みデータをすべて削除します。商品リストは残ります。この操作は取り消せません。','すべて削除する',async()=>{
+    await dbClear('sales');await renderHistory();showToast('履歴を削除しました');
+  },'btn-red','⚠️ 削除前にCSV・JSONバックアップを推奨します。');
 }
 
 // ===========================
@@ -1529,6 +1734,7 @@ async function showPage(name,btn){
   if(name==='history')await renderHistory();
   if(name==='settings')showStorageInfo();
   if(name==='register')renderProductGrid();
+  if(name==='products')await renderProductList();
 }
 
 async function showStorageInfo(){
@@ -1547,7 +1753,7 @@ async function showStorageInfo(){
 // ===========================
 // モーダル外クリック
 // ===========================
-['product-modal','history-modal','checkout-modal','receipt-modal','archive-modal','csv-archive-modal','dl-complete-modal'].forEach(id=>{
+['product-modal','history-modal','checkout-modal','receipt-modal','archive-modal','csv-archive-modal','dl-complete-modal','db-error-modal','confirm-modal'].forEach(id=>{
   document.getElementById(id).addEventListener('click',e=>{
     if(e.target.id!==id)return;
     if(id==='product-modal')closeProductModal();
@@ -1557,6 +1763,8 @@ async function showStorageInfo(){
     if(id==='archive-modal')closeArchiveModal();
     if(id==='csv-archive-modal')closeCsvArchiveModal();
     if(id==='dl-complete-modal')closeDlCompleteModal();
+    if(id==='db-error-modal')closeDbErrorModal();
+    if(id==='confirm-modal')closeConfirmModal();
   });
 });
 
@@ -1568,6 +1776,38 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function formatDate(d){return`${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`;}
 function formatTime(d){return`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;}
 let toastTimer;
+function copySummary(){
+  // 商品別販売数を今日のデータから再構築してコピー
+  const today=formatDate(new Date());
+  dbGetAll('sales').then(sales=>{
+    const todaySales=sales.filter(s=>s.dateStr===today&&!s.archived);
+    const map={};
+    todaySales.forEach(s=>s.items.forEach(it=>{
+      if(!map[it.name])map[it.name]={qty:0,total:0};
+      map[it.name].qty+=it.qty;
+      map[it.name].total+=it.price*it.qty;
+    }));
+    const lines=Object.entries(map)
+      .sort((a,b)=>b[1].total-a[1].total)
+      .map(([name,v])=>`${name}	${v.qty}個	${fmt(v.total)}`);
+    if(!lines.length){showToast('販売データがありません','error');return;}
+    lines.unshift(`【商品別販売数】${today}`);
+    const text=lines.join('\n');
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(text)
+        .then(()=>showToast('コピーしました','success'))
+        .catch(()=>fallbackCopy(text));
+    }else{fallbackCopy(text);}
+  });
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');showToast('コピーしました','success');}
+  catch(e){showToast('コピーに失敗しました','error');}
+  document.body.removeChild(ta);
+}
 function showToast(msg,type=''){
   const el=document.getElementById('toast');
   el.textContent=msg;el.className='toast show'+(type?' '+type:'');
